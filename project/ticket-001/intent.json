@@ -1,0 +1,110 @@
+{
+  "schema": "new-project.intent/v3",
+  "ticket": "ticket-001",
+  "summary": "Define reusable deployment DSL",
+  "workstream": "integration",
+  "classification": {
+    "kind": "FEATURE",
+    "priority": "P1",
+    "origin": "requested"
+  },
+  "allowedPaths": [
+    "project/ticket-001/**",
+    "TODO.md",
+    "project/TICKETS.md",
+    "dsl-manifest.json",
+    "schemas/deployment.schema.json",
+    "docs/DEPLOYMENT.md",
+    "docs/ARCHITECTURE.md",
+    "docs/LOGIC_FLOW.md"
+  ],
+  "forbiddenPaths": [
+    "project/ticket-*/user-*.md",
+    ".governance/**",
+    ".github/**",
+    "AGENTS.md",
+    "README.md",
+    "VERSION",
+    "CHANGELOG.md",
+    "Dockerfile",
+    "compose.yml",
+    "project.sh",
+    "project.bat"
+  ],
+  "stacks": ["docker"],
+  "dependsOn": [],
+  "conflictsWith": [],
+  "integrationTicket": null,
+  "delivery": {
+    "acceptedBaseSha": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+    "targetBranch": "main",
+    "outcome": "A reusable, executor-neutral deployment DSL with exact bindings, external authority, deterministic verification, rollback semantics, and adoption guidance.",
+    "nonGoals": [
+      "Implement or replace a deployment executor",
+      "Store secrets or raw environment-specific target coordinates",
+      "Run a production deployment",
+      "Grant an LLM or DSL document deployment authority",
+      "Merge without independent current-head approval"
+    ],
+    "complexity": "S",
+    "estimatedMinutes": 30,
+    "budgets": {
+      "maxImplementationFiles": 5,
+      "maxAffectedComponents": 2,
+      "maxPublicInterfaceChanges": 0,
+      "maxRuntimeDependencies": 0
+    },
+    "architecture": {
+      "status": "accepted",
+      "decision": "Use a closed JSON AST as the canonical deployment definition, resolve exact source and target bindings outside the document, and keep executors behind adapters that cannot mint authority or redefine verification outcomes.",
+      "components": [
+        {
+          "name": "normative-contract",
+          "paths": [
+            "dsl-manifest.json",
+            "schemas/deployment.schema.json"
+          ]
+        },
+        {
+          "name": "adoption-guidance",
+          "paths": [
+            "docs/DEPLOYMENT.md",
+            "docs/ARCHITECTURE.md",
+            "docs/LOGIC_FLOW.md"
+          ]
+        }
+      ],
+      "responsibilityChanges": false,
+      "interfaceChanges": [],
+      "dataChanges": [
+        "Introduce the pre-stable wellmanifest.deployment/v1 canonical contract"
+      ],
+      "ui": {
+        "impact": "none",
+        "states": [],
+        "evidence": []
+      },
+      "rollback": "Remove the five ticket-owned product files; preserve governance bootstrap and ticket evidence."
+    },
+    "runtimeDependencies": [],
+    "validation": [
+      {
+        "criterion": "AC-01",
+        "commands": [
+          "python3 -m json.tool schemas/deployment.schema.json",
+          "Draft202012Validator.check_schema plus embedded example validation"
+        ],
+        "evidence": "project/ticket-001/ai-codex-logs.txt"
+      },
+      {
+        "criterion": "AC-07",
+        "commands": [
+          "../dsl/src/dsl_check.py validate --root . dsl-manifest.json",
+          "docker compose run --rm conformance",
+          "./project/governance-check.sh --actor agent"
+        ],
+        "evidence": "project/ticket-001/ai-codex-logs.txt"
+      }
+    ]
+  }
+}
