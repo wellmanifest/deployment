@@ -34,9 +34,23 @@ verification, receipts, and rollback remain separate trust boundaries.
   Subactor deployment-binding, incident, verification, and rollback contracts.
 - Kept the dirty `semcod/redeploy` checkout read-only to preserve another
   author's in-progress work.
+- Confirmed that multi-tenant signup, trials, subscriptions, payment webhooks,
+  and tenant provisioning are a separate lifecycle standard rather than fields
+  of the executor-neutral deployment definition.
+- Re-ran governance, DSL, schema, semantic canary, Docker, and diff validation;
+  every deterministic check passed.
 
 ## Blockers
 
 - None inside the recorded intent; proceed without a second confirmation.
-- New authority remains required for destructive action, secret access, new
-  external coordination, material objective expansion and trusted merge.
+- The user's explicit push request authorizes public remote creation,
+  ticket-branch publication and pull-request creation for this bounded diff.
+- New authority remains required for destructive action, secret access,
+  material objective expansion and trusted merge.
+
+## Acceptance evidence
+
+- AC-01/02: `schemas/deployment.schema.json` metaschema and embedded examples.
+- AC-03/05: lifecycle and terminal-state diagrams in `docs/LOGIC_FLOW.md`.
+- AC-04/06: strategy rules and command guide in `docs/DEPLOYMENT.md`.
+- AC-07: raw command output in `ai-codex-logs.txt`.

@@ -36,7 +36,7 @@
   "conflictsWith": [],
   "integrationTicket": null,
   "delivery": {
-    "acceptedBaseSha": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+    "acceptedBaseSha": "b68c39ec201a714c19f6d35ad6a1dd1635e36ba6",
     "targetBranch": "main",
     "outcome": "A reusable, executor-neutral deployment DSL with exact bindings, external authority, deterministic verification, rollback semantics, and adoption guidance.",
     "nonGoals": [

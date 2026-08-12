@@ -1,0 +1,143 @@
+{
+  "$schema": "https://raw.githubusercontent.com/wellmanifest/dsl/550e5f441c709e15f2679c1af151352d1eba2f1e/schemas/dsl-manifest.schema.json",
+  "schema": "wellmanifest.dsl/manifest/v1",
+  "id": "wellmanifest.deployment",
+  "name": "Wellmanifest Deployment DSL",
+  "version": "0.1.0-dev",
+  "status": "experimental",
+  "purpose": "Executor-neutral, exact-bound definitions for safe deployment planning, authorization, rollout, verification, rollback, and receipts",
+  "domain": "software-deployment",
+  "owners": [
+    {
+      "kind": "repository",
+      "id": "github:wellmanifest/deployment",
+      "responsibilities": [
+        "semantics",
+        "validation",
+        "compatibility",
+        "security"
+      ]
+    }
+  ],
+  "source": {
+    "repository": "https://github.com/wellmanifest/deployment",
+    "path": "schemas/deployment.schema.json",
+    "declaredVersion": "0.1.0-dev",
+    "canonical": "json-ast",
+    "mediaType": "application/schema+json",
+    "selectors": []
+  },
+  "ownedPaths": [
+    "dsl-manifest.json",
+    "schemas/deployment.schema.json",
+    "docs/DEPLOYMENT.md",
+    "docs/ARCHITECTURE.md",
+    "docs/LOGIC_FLOW.md"
+  ],
+  "artifacts": [
+    {
+      "path": "schemas/deployment.schema.json",
+      "role": "normative-source",
+      "digest": "sha256:f09d029469da169384fc8df2cab46e89d1d66f71233817444ca4147e5a0f50a8"
+    },
+    {
+      "path": "docs/DEPLOYMENT.md",
+      "role": "documentation",
+      "digest": "sha256:6115929f3a910ac9460854d3096cbaffc86c7bdf7bf026689e480f3fbe7ed455"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "role": "documentation",
+      "digest": "sha256:8d10860e410f475da6593437fe6a8e05dbca77e27eed348cb63dea09c0c170bf"
+    },
+    {
+      "path": "docs/LOGIC_FLOW.md",
+      "role": "documentation",
+      "digest": "sha256:1471c4cd630f611bd644870b1f0a5c0894dee0c47aa2f8dba3e54c036496b92b"
+    }
+  ],
+  "namespaces": [
+    {
+      "prefix": "wellmanifest",
+      "uri": "https://wellmanifest.dev/"
+    }
+  ],
+  "projections": [],
+  "lifecycle": {
+    "compatibility": "semver",
+    "stability": "experimental",
+    "breaking": "major",
+    "additive": "minor",
+    "fix": "patch"
+  },
+  "semantics": {
+    "effectModel": "controlled-effects",
+    "unknownPolicy": "reject",
+    "authoritySchema": "wellmanifest.deployment-grant/v1"
+  },
+  "llm": {
+    "mode": "none",
+    "requestSchemas": [],
+    "responseSchemas": [],
+    "naturalLanguage": "forbidden",
+    "sourceSchema": null,
+    "modelAuthority": "none",
+    "strict": true
+  },
+  "documentation": {
+    "commandRoot": "docs",
+    "errorRoot": "docs/ERROR",
+    "criticalRoot": "docs/CRITICAL",
+    "commands": [
+      "DEPLOYMENT"
+    ],
+    "errorCodes": [],
+    "criticalCodes": []
+  },
+  "findingPolicy": {
+    "schema": "wellmanifest.dsl/findings/v1",
+    "requiredProducers": [
+      "wellmanifest.deployment-schema"
+    ],
+    "securityProducers": [
+      "wellmanifest.deployment-schema"
+    ],
+    "blockingSeverities": [
+      "error",
+      "critical"
+    ],
+    "requireEvaluable": true,
+    "blockUnresolvedSecurity": true
+  },
+  "conformance": {
+    "levels": [
+      "manifest"
+    ],
+    "commands": [
+      "python3 ../dsl/src/dsl_check.py validate --root . dsl-manifest.json",
+      "docker compose run --rm conformance"
+    ],
+    "validExamples": [],
+    "invalidExamples": []
+  },
+  "mappings": [
+    {
+      "standard": "wellmanifest.dsl",
+      "version": "0.1.0-dev",
+      "relation": "implements",
+      "uri": "https://github.com/wellmanifest/dsl/tree/550e5f441c709e15f2679c1af151352d1eba2f1e"
+    },
+    {
+      "standard": "semcod.redeploy",
+      "version": "0.2.79",
+      "relation": "compatible-with",
+      "uri": "https://github.com/semcod/redeploy/tree/d9c7dd873cd2cedb6bb082bf2757661f4f3f3da9"
+    },
+    {
+      "standard": "subactor.deployment-bindings",
+      "version": "1",
+      "relation": "maps-to",
+      "uri": "https://github.com/subactor/platform/tree/272fab648a9fb55e54e280fdd895e3f53521dbe2/config/deployment-bindings"
+    }
+  ]
+}

@@ -7,3 +7,26 @@ REDEPLOY_REVISION=d9c7dd873cd2cedb6bb082bf2757661f4f3f3da9
 REDEPLOY_WORKTREE=DIRTY(read-only; preserved)
 SUBACTOR_PLATFORM_REVISION=272fab648a9fb55e54e280fdd895e3f53521dbe2
 SESSION_EXECUTION_AUTHORIZATION=USER_REQUEST
+[2026-08-12 standardization validation]
+$ ./project/governance-check.sh --actor agent
+GOV-PASS: passed (0 errors, 0 warnings)
+$ python3 ../dsl/src/dsl_check.py validate --root . dsl-manifest.json
+DSL-PASS: passed (0 errors)
+$ Draft202012Validator.check_schema + embedded example validation
+schema metaschema + 2 examples: PASS
+canary semantic ordering: PASS
+$ docker compose run --rm conformance
+DSL-PASS: passed (0 errors)
+$ git diff --check
+PASS
+2026-08-12 publication revalidation
+python3 -m json.tool schemas/deployment.schema.json
+exit=0
+python3 ../dsl/src/dsl_check.py validate --root . dsl-manifest.json
+DSL-PASS: passed (0 errors)
+docker compose run --rm conformance
+DSL-PASS: passed (0 errors)
+./project/governance-check.sh --actor agent
+GOV-PASS: passed (0 errors, 0 warnings)
+git diff --check
+exit=0
