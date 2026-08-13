@@ -20,3 +20,8 @@
 - Recorded explicit authority to create the public remote, commit the bounded
   diff, push the ticket branch and open a pull request without treating that
   request as trusted merge approval.
+
+## 2026-08-13 publication
+
+- Closed after `ifuri-validator-agent` approved and merged pull request #1 at
+  `0da06a6dd7bb7e4934c39ef492f1fafba16969b6`.
