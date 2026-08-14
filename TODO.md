@@ -1,9 +1,9 @@
 # Project roadmap
 
-- [ ] [`ticket-005`](project/ticket-005/README.md) — select the hosted CI DSL
-  checkout from an exact schema-to-SHA allowlist. State:
-  `IN_PROGRESS / PUBLICATION`; governance, workflow syntax and both resolver
-  cases pass, pending protected hosted validation.
+- [x] [`ticket-005`](project/ticket-005/README.md) — select the hosted CI DSL
+  checkout from an exact schema-to-SHA allowlist. Published by exact-head
+  Validator approval; ticket-002 subsequently passed the current-checker path
+  and reached protected `main`.
 - [x] [`ticket-004`](project/ticket-004/README.md) — route every Compose
   conformance run through the image's exact-schema dispatcher. Published by
   exact-head Validator App approval and protected merge; both coordinated

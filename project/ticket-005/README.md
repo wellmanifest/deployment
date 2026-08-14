@@ -2,8 +2,8 @@
 
 - **ID**: ticket-005
 - **Owner**: unresolved:human
-- **Status**: IN_PROGRESS
-- **Workflow state**: PUBLICATION
+- **Status**: DONE
+- **Workflow state**: DONE
 - **Created**: 2026-08-14
 
 ## Goal and scope
@@ -32,7 +32,16 @@ references without attempting validation.
 - Ticket-002 schema resolves to exact DSL commit `b7d059…`: PASS.
 - Static fail-closed assertion confirms no manifest-provided ref and an
   explicit error exit for every non-allowlisted URI: PASS.
-- Hosted checks remain the protected publication boundary.
+- Hosted `test` and `windows-governance` passed on exact final head
+  `daae501baa7bd242170f039341013a6ee943ff78`.
+- Validator run `31839942567` completed successfully and App review
+  `4941117996` approved that exact head.
+- The Validator App explicitly merged PR #7 as
+  `4f211e82bcbe3c1435b067c396cb7fe4d1c2d749`; protected `main` read-back
+  returned the merge and the source branch was deleted.
+- End-to-end proof: ticket-002 then passed the current-checker hosted path and
+  was independently merged as `a13b6442545f5db3a6b1790a831641a1b888c7b2`;
+  its DONE closure is now also on protected `main`.
 
 ## Risks
 

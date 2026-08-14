@@ -29,9 +29,13 @@ in CI, otherwise the required `test` check can never validate the migration.
 - Passed only the allowlisted output to the external `actions/checkout` ref.
 - Parsed the workflow and exercised the actual resolver block against both
   coordinated manifests.
+- Published through exact-head Validator App approval, then verified the
+  dependent ticket-002 passed hosted CI and reached protected `main`.
 
 ## Blockers
 
 - None inside the recorded intent; proceed without a second confirmation.
 - New authority remains required for destructive action, secret access, new
   external coordination, material objective expansion and trusted merge.
+- No blocker remains; implementation, dependent integration and closure are
+  complete.
