@@ -6,3 +6,10 @@ RUNTIME_DEPENDENCIES_MAX=0
 DOCKER_REQUIRED=true
 INITIAL_DSL_FINDINGS=DSL-MANIFEST-001 count=3; DSL-DOC-001 count=1
 PLAN_CORRECTION=XS estimate reduced from 15 to policy maximum 10 minutes; scope and architecture unchanged
+IMPLEMENTATION_COMMIT=e2b8d9f
+DSL_VALIDATE=PASS
+DSL_STANDARDS=PASS
+GOVERNANCE=GOV-PASS 0 errors 0 warnings
+DOCKER_BUILD=PASS
+DOCKER_CONFORMANCE=FAIL legacy checker 550e5f rejects current publicationPolicy standardsLock vocabularyKind fields
+BLOCKER=runtime upgrade belongs to infrastructure workstream outside ticket-002 allowedPaths

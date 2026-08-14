@@ -15,11 +15,11 @@ policy, and an immutable lock to the exact shared DSL schema revision.
 
 ## Acceptance criteria
 
-- [ ] AC-01: The ticket binds the user's execution instruction to exact
+- [x] AC-01: The ticket binds the user's execution instruction to exact
   `main@852f3f9`, one implementation file and zero runtime dependencies.
-- [ ] AC-02: The manifest declares `vocabularyKind=commands` and the complete
+- [x] AC-02: The manifest declares `vocabularyKind=commands` and the complete
   controlled publication policy required by its effect model.
-- [ ] AC-03: DSL mapping, schema URL and standards lock all use immutable
+- [x] AC-03: DSL mapping, schema URL and standards lock all use immutable
   revision `b7d0595...` with the published schema digest.
 - [ ] AC-04: Current manifest/standards checks, repository governance and the
   required Docker build/conformance run pass.
@@ -30,6 +30,17 @@ policy, and an immutable lock to the exact shared DSL schema revision.
   alter the closed deployment document schema.
 - Docker remains required by repository governance and is validation evidence,
   not an executor invocation.
+
+## Validation state
+
+- Current DSL manifest and standards lock: PASS.
+- Repository governance: `GOV-PASS` with zero findings.
+- Docker build: PASS.
+- Docker conformance: BLOCKED because the image intentionally embeds DSL
+  checker revision `550e5f…`, which rejects the current v1 fields
+  `publicationPolicy`, `standardsLock` and `documentation.vocabularyKind`.
+  Updating `Dockerfile` belongs to the separate `infrastructure` workstream
+  and is outside this ticket's write scope.
 
 ## Participants
 

@@ -4,3 +4,7 @@
 
 - Initial governance scaffold created.
 - No human participant identity or content was generated.
+- Migrated the deployment manifest to the current publication, documentation
+  and immutable lock contract without changing deployment semantics.
+- Recorded the required Docker checker's older-revision incompatibility as an
+  explicit cross-workstream blocker instead of weakening either validator.
