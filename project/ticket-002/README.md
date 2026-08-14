@@ -2,8 +2,8 @@
 
 - **ID**: ticket-002
 - **Owner**: unresolved:human
-- **Status**: IN_PROGRESS
-- **Workflow state**: PUBLICATION
+- **Status**: DONE
+- **Workflow state**: DONE
 - **Created**: 2026-08-14
 
 ## Goal and scope
@@ -46,6 +46,13 @@ policy, and an immutable lock to the exact shared DSL schema revision.
 - Hosted `test` and `windows-governance` passed on implementation head
   `d830a7abb7f5d52ec5768962eb2730e30ca50078`; the test included the
   networkless Docker conformance run with the current checker.
+- Both required hosted checks passed again on final exact head
+  `af3ee4ef65fdacb6c557c0b0db4a431d76e9b84e`.
+- Validator run `31840312229` completed successfully and App review
+  `4941150838` approved that exact head.
+- The Validator App explicitly merged PR #6 as
+  `a13b6442545f5db3a6b1790a831641a1b888c7b2`; protected `main` read-back
+  returned the merge and the source branch was deleted.
 
 ## Participants
 

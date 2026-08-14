@@ -18,3 +18,5 @@
   unchanged intent to the final dependency merge.
 - Recorded green hosted implementation checks in a governance-only publication
   evidence commit after the history-rewriting rebase.
+- Closed after final hosted checks, exact-head independent approval, protected
+  merge read-back and source-branch cleanup completed.
