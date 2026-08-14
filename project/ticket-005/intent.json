@@ -1,0 +1,80 @@
+{
+  "schema": "new-project.intent/v3",
+  "ticket": "ticket-005",
+  "summary": "Route hosted CI through exact-schema DSL revision",
+  "workstream": "infrastructure",
+  "classification": {
+    "kind": "BUG",
+    "priority": "P0",
+    "origin": "health"
+  },
+  "allowedPaths": [
+    "project/ticket-005/**",
+    "TODO.md",
+    "project/TICKETS.md",
+    ".github/workflows/ci.yml"
+  ],
+  "forbiddenPaths": [
+    "project/ticket-*/user-*.md",
+    ".governance/**",
+    "AGENTS.md",
+    "README.md",
+    "VERSION",
+    "CHANGELOG.md",
+    "Dockerfile",
+    "compose.yml",
+    "dsl-manifest.json",
+    "schemas/**",
+    "docs/**"
+  ],
+  "stacks": ["docker"],
+  "dependsOn": ["ticket-003"],
+  "conflictsWith": [],
+  "integrationTicket": null,
+  "delivery": {
+    "acceptedBaseSha": "8c601d89243a6dcd3f1f1f203d7b35aae723f652",
+    "targetBranch": "main",
+    "outcome": "Select the hosted DSL checker from an exact schema-to-commit allowlist before checkout",
+    "nonGoals": [
+      "Change Deployment DSL manifests, schemas or semantics",
+      "Accept mutable or manifest-provided checkout refs",
+      "Fallback after validation failure",
+      "Publish or merge without protected exact-head approval"
+    ],
+    "complexity": "XS",
+    "estimatedMinutes": 10,
+    "budgets": {
+      "maxImplementationFiles": 1,
+      "maxAffectedComponents": 1,
+      "maxPublicInterfaceChanges": 0,
+      "maxRuntimeDependencies": 0
+    },
+    "architecture": {
+      "status": "accepted",
+      "decision": "Resolve the checked-in exact schema URI to one of two hardcoded DSL commit SHAs and pass only that output to checkout",
+      "components": [
+        {"name": "hosted-conformance-workflow", "paths": [".github/workflows/ci.yml"]}
+      ],
+      "responsibilityChanges": false,
+      "interfaceChanges": [],
+      "dataChanges": [],
+      "ui": {"impact": "none", "states": [], "evidence": []},
+      "rollback": "Revert the workflow-only implementation commit; old protected main remains compatible with its original checker."
+    },
+    "runtimeDependencies": [],
+    "validation": [
+      {
+        "criterion": "AC-04",
+        "commands": [
+          "./project/governance-check.sh --actor agent",
+          "python3 -c workflow YAML parse",
+          "resolve old immutable schema to 550e5f",
+          "resolve current immutable schema to b7d059",
+          "reject unsupported schema",
+          "hosted test and windows-governance"
+        ],
+        "evidence": "project/ticket-005/ai-codex-logs.txt"
+      }
+    ]
+  }
+}
