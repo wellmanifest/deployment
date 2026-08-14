@@ -37,6 +37,8 @@ needed.
   manifest, standards, governance, Docker build and Compose conformance gates.
 - Refreshed the intent's accepted base to the exact protected merge after the
   unchanged-scope continuation authorization and reran range governance.
+- Rebased once more after the hosted exact-schema dispatcher landed and
+  refreshed the unchanged intent to that final protected base.
 
 ## Blockers
 

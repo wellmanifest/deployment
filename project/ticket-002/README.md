@@ -16,8 +16,8 @@ policy, and an immutable lock to the exact shared DSL schema revision.
 ## Acceptance criteria
 
 - [x] AC-01: The ticket binds the original execution instruction to exact
-  `main@852f3f9` and the post-dependency continuation to exact
-  `main@8c601d8`, with one implementation file and zero runtime dependencies.
+  `main@852f3f9` and the final post-dependency continuation to exact
+  `main@4f211e8`, with one implementation file and zero runtime dependencies.
 - [x] AC-02: The manifest declares `vocabularyKind=commands` and the complete
   controlled publication policy required by its effect model.
 - [x] AC-03: DSL mapping, schema URL and standards lock all use immutable
@@ -41,6 +41,8 @@ policy, and an immutable lock to the exact shared DSL schema revision.
   disabled and exact-schema checker selection.
 - Coordinated ticket-003 and the practice-derived ticket-004 repair are both
   `DONE` on protected `main`; this ticket remains a manifest-only migration.
+- Ticket-005's exact-schema hosted workflow is merged on protected `main`, so
+  CI now selects checker `b7d059…` for this manifest without a mutable ref.
 
 ## Participants
 

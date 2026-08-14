@@ -14,3 +14,5 @@
   the required isolated Compose conformance path.
 - Refreshed the exact accepted-base binding without changing scope,
   architecture, budgets or deployment semantics.
+- Rebased onto the protected hosted checker dispatcher and refreshed the same
+  unchanged intent to the final dependency merge.
