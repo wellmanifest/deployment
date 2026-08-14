@@ -4,10 +4,3 @@ services:
       context: .
     working_dir: /workspace
     network_mode: none
-    command:
-      - python3
-      - /opt/wellmanifest/dsl_check.py
-      - validate
-      - --root
-      - .
-      - dsl-manifest.json

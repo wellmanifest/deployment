@@ -3,7 +3,7 @@
 - **ID**: ticket-004
 - **Owner**: unresolved:human
 - **Status**: IN_PROGRESS
-- **Workflow state**: EDIT
+- **Workflow state**: PUBLICATION
 - **Created**: 2026-08-14
 
 ## Goal and scope
@@ -17,11 +17,21 @@ documents, schemas or authority semantics.
 
 - [x] AC-01: The ticket binds the observed Compose bypass to exact protected
   `main@932ce37`, one implementation file and zero runtime dependencies.
-- [ ] AC-02: `docker compose run --rm conformance` uses the image dispatcher
+- [x] AC-02: `docker compose run --rm conformance` uses the image dispatcher
   and validates the current immutable main manifest.
-- [ ] AC-03: The same Compose service validates the ticket-002 manifest through
+- [x] AC-03: The same Compose service validates the ticket-002 manifest through
   its pinned checker while networking remains disabled.
-- [ ] AC-04: Repository governance, Docker build and both regression runs pass.
+- [x] AC-04: Repository governance, Docker build and both regression runs pass.
+
+## Validation state
+
+- Repository governance: `GOV-PASS` with zero findings.
+- Resolved Compose config has no service command override and retains
+  `network_mode: none`.
+- Docker build: PASS with the checksum-bound dual-checker image.
+- Current protected-main manifest through Compose: `DSL-PASS`.
+- Ticket-002 current-checker manifest mounted read-only through the same
+  Compose service: `DSL-PASS`.
 
 ## Risks
 

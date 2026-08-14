@@ -23,6 +23,10 @@ the ticket-002 migration instead of selecting the pinned current checker.
 ## Actual changes
 
 - Initialized the bounded P0 ticket from the failed ticket-002 AC-04 run.
+- Removed the stale Compose command override, leaving exact-schema checker
+  selection exclusively to the checksum-bound image command.
+- Confirmed the resolved service retains network isolation and validated both
+  the protected-main and ticket-002 manifest revisions through Compose.
 
 ## Blockers
 

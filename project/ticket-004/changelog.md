@@ -4,3 +4,5 @@
 
 - Recorded the Compose-to-image command boundary defect discovered by the
   ticket-002 end-to-end conformance run.
+- Removed the duplicated legacy checker command and validated both coordinated
+  immutable manifest revisions through the isolated Compose service.
