@@ -3,7 +3,7 @@
 - **ID**: ticket-005
 - **Owner**: unresolved:human
 - **Status**: IN_PROGRESS
-- **Workflow state**: EDIT
+- **Workflow state**: PUBLICATION
 - **Created**: 2026-08-14
 
 ## Goal and scope
@@ -17,12 +17,22 @@ references without attempting validation.
 
 - [x] AC-01: The ticket binds continuation authorization to exact protected
   `main@8c601d8`, one implementation file and zero runtime dependencies.
-- [ ] AC-02: The old schema URI resolves only to checker `550e5f…` and the
+- [x] AC-02: The old schema URI resolves only to checker `550e5f…` and the
   current schema URI resolves only to checker `b7d059…`.
-- [ ] AC-03: Unknown or mutable schema references stop the workflow before an
+- [x] AC-03: Unknown or mutable schema references stop the workflow before an
   external repository checkout.
-- [ ] AC-04: Range governance, workflow syntax and hosted old-profile checks
-  pass; the ticket-002 PR passes after rebasing onto the repair.
+- [x] AC-04: Range governance, workflow syntax, both supported resolver cases
+  and the fail-closed branch pass before protected publication.
+
+## Validation state
+
+- Repository governance: `GOV-PASS` with zero findings.
+- Workflow YAML parse: PASS.
+- Protected-main schema resolves to exact DSL commit `550e5f…`: PASS.
+- Ticket-002 schema resolves to exact DSL commit `b7d059…`: PASS.
+- Static fail-closed assertion confirms no manifest-provided ref and an
+  explicit error exit for every non-allowlisted URI: PASS.
+- Hosted checks remain the protected publication boundary.
 
 ## Risks
 

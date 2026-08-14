@@ -37,11 +37,30 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Resolve immutable DSL standard
+        id: dsl-standard
+        shell: bash
+        run: |
+          set -euo pipefail
+          schema="$(python3 -c 'import json; print(json.load(open("dsl-manifest.json", encoding="utf-8")).get("$schema", ""))')"
+          case "$schema" in
+            https://raw.githubusercontent.com/wellmanifest/dsl/550e5f441c709e15f2679c1af151352d1eba2f1e/schemas/dsl-manifest.schema.json)
+              revision=550e5f441c709e15f2679c1af151352d1eba2f1e
+              ;;
+            https://raw.githubusercontent.com/wellmanifest/dsl/b7d0595c95e5abbb48ebfdbdae0bc6d43c6f82f4/schemas/dsl-manifest.schema.json)
+              revision=b7d0595c95e5abbb48ebfdbdae0bc6d43c6f82f4
+              ;;
+            *)
+              echo "DSL-MANIFEST-001: unsupported immutable manifest schema '$schema'" >&2
+              exit 1
+              ;;
+          esac
+          echo "revision=$revision" >> "$GITHUB_OUTPUT"
       - name: Check out immutable DSL standard
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           repository: wellmanifest/dsl
-          ref: 550e5f441c709e15f2679c1af151352d1eba2f1e
+          ref: ${{ steps.dsl-standard.outputs.revision }}
           path: vendor/dsl
           persist-credentials: false
       - name: Set up Python

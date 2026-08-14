@@ -24,6 +24,11 @@ in CI, otherwise the required `test` check can never validate the migration.
 
 - Initialized the bounded ticket and recorded SESSION_EXECUTION_AUTHORIZATION
   from the request to execute this work.
+- Added a pre-checkout resolver that maps the two supported immutable schema
+  URIs to exact DSL commits and rejects every other value.
+- Passed only the allowlisted output to the external `actions/checkout` ref.
+- Parsed the workflow and exercised the actual resolver block against both
+  coordinated manifests.
 
 ## Blockers
 
