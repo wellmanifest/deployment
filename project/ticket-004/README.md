@@ -2,8 +2,8 @@
 
 - **ID**: ticket-004
 - **Owner**: unresolved:human
-- **Status**: IN_PROGRESS
-- **Workflow state**: PUBLICATION
+- **Status**: DONE
+- **Workflow state**: DONE
 - **Created**: 2026-08-14
 
 ## Goal and scope
@@ -32,6 +32,13 @@ documents, schemas or authority semantics.
 - Current protected-main manifest through Compose: `DSL-PASS`.
 - Ticket-002 current-checker manifest mounted read-only through the same
   Compose service: `DSL-PASS`.
+- Hosted `test` and `windows-governance` checks passed on exact head
+  `69db0da956cd5cb591f856957992127b3efe0a7b`.
+- Validator run `31838822194` completed successfully and App review
+  `4941028299` approved that exact head.
+- The Validator App explicitly merged PR #4 as
+  `15ea7b123e4d09c424b70d74064b1a7910ef4715`; protected `main` read-back
+  returned the merge and the source branch was deleted.
 
 ## Risks
 

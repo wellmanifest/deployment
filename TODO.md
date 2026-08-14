@@ -1,9 +1,9 @@
 # Project roadmap
 
-- [ ] [`ticket-004`](project/ticket-004/README.md) — route every Compose
-  conformance run through the image's exact-schema dispatcher. State:
-  `IN_PROGRESS / PUBLICATION`; local governance, build and both immutable
-  manifest regressions pass, pending protected publication.
+- [x] [`ticket-004`](project/ticket-004/README.md) — route every Compose
+  conformance run through the image's exact-schema dispatcher. Published by
+  exact-head Validator App approval and protected merge; both coordinated
+  immutable manifest revisions pass through the isolated Compose service.
 - [x] [`ticket-003`](project/ticket-003/README.md) — make the required Docker
   conformance checker migration-safe for the exact old and new DSL revisions.
   Published through exact-head Validator App approval and protected merge;

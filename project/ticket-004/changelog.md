@@ -7,3 +7,5 @@
 - Removed the duplicated legacy checker command and validated both coordinated
   immutable manifest revisions through the isolated Compose service.
 - Preserved the required plan-before-implementation history boundary.
+- Closed after hosted checks, exact-head independent approval, protected merge
+  read-back and source-branch cleanup completed.
