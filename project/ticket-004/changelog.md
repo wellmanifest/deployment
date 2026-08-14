@@ -6,3 +6,4 @@
   ticket-002 end-to-end conformance run.
 - Removed the duplicated legacy checker command and validated both coordinated
   immutable manifest revisions through the isolated Compose service.
+- Preserved the required plan-before-implementation history boundary.
