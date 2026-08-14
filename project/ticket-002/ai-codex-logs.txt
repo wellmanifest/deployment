@@ -5,3 +5,4 @@ IMPLEMENTATION_FILES_MAX=1
 RUNTIME_DEPENDENCIES_MAX=0
 DOCKER_REQUIRED=true
 INITIAL_DSL_FINDINGS=DSL-MANIFEST-001 count=3; DSL-DOC-001 count=1
+PLAN_CORRECTION=XS estimate reduced from 15 to policy maximum 10 minutes; scope and architecture unchanged

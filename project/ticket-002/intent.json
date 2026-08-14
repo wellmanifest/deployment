@@ -42,7 +42,7 @@
       "Publish, merge, tag or release without protected exact-head approval"
     ],
     "complexity": "XS",
-    "estimatedMinutes": 15,
+    "estimatedMinutes": 10,
     "budgets": {
       "maxImplementationFiles": 1,
       "maxAffectedComponents": 1,
