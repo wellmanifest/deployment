@@ -35,6 +35,8 @@ needed.
   migration revisions and fails closed for unlisted revisions.
 - Rebased after ticket-003 and ticket-004 reached protected `main`, then reran
   manifest, standards, governance, Docker build and Compose conformance gates.
+- Refreshed the intent's accepted base to the exact protected merge after the
+  unchanged-scope continuation authorization and reran range governance.
 
 ## Blockers
 

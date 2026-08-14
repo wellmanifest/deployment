@@ -32,7 +32,7 @@
   "conflictsWith": [],
   "integrationTicket": null,
   "delivery": {
-    "acceptedBaseSha": "852f3f9f3d1d6305baf886a0b5d2cd0b6ad7038f",
+    "acceptedBaseSha": "8c601d89243a6dcd3f1f1f203d7b35aae723f652",
     "targetBranch": "main",
     "outcome": "Restore Deployment DSL manifest v1 conformance with a proportional controlled-effects publication policy and immutable shared-standard lock",
     "nonGoals": [

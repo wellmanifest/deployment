@@ -15,8 +15,9 @@ policy, and an immutable lock to the exact shared DSL schema revision.
 
 ## Acceptance criteria
 
-- [x] AC-01: The ticket binds the user's execution instruction to exact
-  `main@852f3f9`, one implementation file and zero runtime dependencies.
+- [x] AC-01: The ticket binds the original execution instruction to exact
+  `main@852f3f9` and the post-dependency continuation to exact
+  `main@8c601d8`, with one implementation file and zero runtime dependencies.
 - [x] AC-02: The manifest declares `vocabularyKind=commands` and the complete
   controlled publication policy required by its effect model.
 - [x] AC-03: DSL mapping, schema URL and standards lock all use immutable

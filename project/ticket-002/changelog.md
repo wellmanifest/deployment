@@ -12,3 +12,5 @@
   the required protected integration order; AC-04 remains fail-closed here.
 - Rebased after the protected infrastructure repairs and completed AC-04 with
   the required isolated Compose conformance path.
+- Refreshed the exact accepted-base binding without changing scope,
+  architecture, budgets or deployment semantics.
