@@ -27,6 +27,8 @@ the ticket-002 migration instead of selecting the pinned current checker.
   selection exclusively to the checksum-bound image command.
 - Confirmed the resolved service retains network isolation and validated both
   the protected-main and ticket-002 manifest revisions through Compose.
+- Published through exact-head Validator App approval, verified the protected
+  merge by API read-back and observed automatic source-branch cleanup.
 
 ## Blockers
 
