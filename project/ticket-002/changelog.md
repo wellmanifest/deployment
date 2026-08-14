@@ -10,3 +10,5 @@
   explicit cross-workstream blocker instead of weakening either validator.
 - Recorded the independently passing ticket-003 compatibility candidate and
   the required protected integration order; AC-04 remains fail-closed here.
+- Rebased after the protected infrastructure repairs and completed AC-04 with
+  the required isolated Compose conformance path.

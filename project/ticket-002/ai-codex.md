@@ -33,13 +33,13 @@ needed.
 - Prepared and independently validated the Docker compatibility change under
   infrastructure-owned ticket-003. Its exact-schema dispatcher accepts both
   migration revisions and fails closed for unlisted revisions.
+- Rebased after ticket-003 and ticket-004 reached protected `main`, then reran
+  manifest, standards, governance, Docker build and Compose conformance gates.
 
 ## Blockers
 
 - None inside the recorded intent; proceed without a second confirmation.
 - New authority remains required for destructive action, secret access, new
   external coordination, material objective expansion and trusted merge.
-- This branch remains based on the old image and cannot claim AC-04 until
-  infrastructure ticket-003 passes protected review, lands on `main`, and
-  ticket-002 is rebased. The compatible image has already validated this exact
-  manifest; the remaining boundary is integration order, not a DSL defect.
+- The infrastructure dependency is resolved; independent Validator App
+  approval remains the only publication boundary.

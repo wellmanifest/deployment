@@ -14,9 +14,8 @@
   the slice coordinates ticket-002 without taking ownership of its manifest.
 - [ ] [`ticket-002`](project/ticket-002/README.md) — restore current DSL
   manifest conformance and immutable shared-standard provenance without
-  changing deployment semantics. State: `IN_PROGRESS / EDIT`; manifest and
-  governance pass, and the validated infrastructure-owned checker candidate
-  must land before this branch rebases and reruns Docker conformance.
+  changing deployment semantics. State: `IN_PROGRESS / PUBLICATION`; all DSL,
+  governance, Docker build and isolated Compose conformance gates pass.
 
 - [x] [`ticket-001`](project/ticket-001/README.md) — define and locally validate the initial deployment
   DSL, strict schema, adoption guidance, architecture, and conformance binding.

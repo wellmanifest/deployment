@@ -3,7 +3,7 @@
 - **ID**: ticket-002
 - **Owner**: unresolved:human
 - **Status**: IN_PROGRESS
-- **Workflow state**: EDIT
+- **Workflow state**: PUBLICATION
 - **Created**: 2026-08-14
 
 ## Goal and scope
@@ -21,7 +21,7 @@ policy, and an immutable lock to the exact shared DSL schema revision.
   controlled publication policy required by its effect model.
 - [x] AC-03: DSL mapping, schema URL and standards lock all use immutable
   revision `b7d0595...` with the published schema digest.
-- [ ] AC-04: Current manifest/standards checks, repository governance and the
+- [x] AC-04: Current manifest/standards checks, repository governance and the
   required Docker build/conformance run pass.
 
 ## Risks
@@ -36,13 +36,10 @@ policy, and an immutable lock to the exact shared DSL schema revision.
 - Current DSL manifest and standards lock: PASS.
 - Repository governance: `GOV-PASS` with zero findings.
 - Docker build: PASS.
-- Docker conformance on this branch: BLOCKED because its base image still
-  embeds DSL checker revision `550e5f…`, which rejects the current v1 fields.
-- Coordinated infrastructure candidate
-  `ticket/003-dsl-checker-migration@6be23a2` validates both this manifest and
-  the old `main` manifest with networking disabled. It must pass protected
-  review and land first; ticket-002 can then rebase and run its own AC-04
-  without combining two implementation tickets in one diff.
+- Docker Compose conformance on the rebased branch: `DSL-PASS` with networking
+  disabled and exact-schema checker selection.
+- Coordinated ticket-003 and the practice-derived ticket-004 repair are both
+  `DONE` on protected `main`; this ticket remains a manifest-only migration.
 
 ## Participants
 
