@@ -1,0 +1,78 @@
+{
+  "schema": "new-project.intent/v3",
+  "ticket": "ticket-004",
+  "summary": "Route Compose conformance through exact-schema dispatcher",
+  "workstream": "infrastructure",
+  "classification": {
+    "kind": "BUG",
+    "priority": "P0",
+    "origin": "health"
+  },
+  "allowedPaths": [
+    "project/ticket-004/**",
+    "TODO.md",
+    "project/TICKETS.md",
+    "compose.yml"
+  ],
+  "forbiddenPaths": [
+    "project/ticket-*/user-*.md",
+    ".governance/**",
+    ".github/**",
+    "AGENTS.md",
+    "README.md",
+    "VERSION",
+    "CHANGELOG.md",
+    "Dockerfile",
+    "dsl-manifest.json",
+    "schemas/**",
+    "docs/**"
+  ],
+  "stacks": ["docker"],
+  "dependsOn": ["ticket-003"],
+  "conflictsWith": [],
+  "integrationTicket": null,
+  "delivery": {
+    "acceptedBaseSha": "932ce370e08573409d9f7691bf7b1e9286b08486",
+    "targetBranch": "main",
+    "outcome": "Make the required Compose conformance path honor the image's exact-schema checker dispatch",
+    "nonGoals": [
+      "Change Deployment DSL manifests, schemas or semantics",
+      "Add a checker fallback after validation failure",
+      "Change the pinned checker revisions or image",
+      "Publish or merge without protected exact-head approval"
+    ],
+    "complexity": "XS",
+    "estimatedMinutes": 10,
+    "budgets": {
+      "maxImplementationFiles": 1,
+      "maxAffectedComponents": 1,
+      "maxPublicInterfaceChanges": 0,
+      "maxRuntimeDependencies": 0
+    },
+    "architecture": {
+      "status": "accepted",
+      "decision": "Let Compose inherit the immutable image CMD so checker selection has one fail-closed implementation",
+      "components": [
+        {"name": "conformance-service", "paths": ["compose.yml"]}
+      ],
+      "responsibilityChanges": false,
+      "interfaceChanges": [],
+      "dataChanges": [],
+      "ui": {"impact": "none", "states": [], "evidence": []},
+      "rollback": "Revert the compose.yml-only implementation commit; this restores the known bypass and is not suitable while ticket-002 is active."
+    },
+    "runtimeDependencies": [],
+    "validation": [
+      {
+        "criterion": "AC-04",
+        "commands": [
+          "./project/governance-check.sh --actor agent",
+          "docker compose build",
+          "docker compose run --rm conformance",
+          "docker compose run --rm --volume <ticket-002-manifest>:/workspace/dsl-manifest.json:ro conformance"
+        ],
+        "evidence": "project/ticket-004/ai-codex-logs.txt"
+      }
+    ]
+  }
+}
