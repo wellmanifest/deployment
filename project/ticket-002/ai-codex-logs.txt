@@ -15,7 +15,7 @@ DOCKER_CONFORMANCE=FAIL legacy checker 550e5f rejects current publicationPolicy 
 BLOCKER=runtime upgrade belongs to infrastructure workstream outside ticket-002 allowedPaths
 2026-08-14 cross-workstream coordination
 INFRASTRUCTURE_BRANCH=ticket/003-dsl-checker-migration
-INFRASTRUCTURE_HEAD=6acf9f3
+INFRASTRUCTURE_HEAD=6be23a2
 INFRASTRUCTURE_GOVERNANCE=PASS
 INFRASTRUCTURE_DOCKER_BUILD=PASS
 OLD_MAIN_MANIFEST_THROUGH_COMPATIBILITY_IMAGE=PASS
