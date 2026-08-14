@@ -13,3 +13,12 @@ GOVERNANCE=GOV-PASS 0 errors 0 warnings
 DOCKER_BUILD=PASS
 DOCKER_CONFORMANCE=FAIL legacy checker 550e5f rejects current publicationPolicy standardsLock vocabularyKind fields
 BLOCKER=runtime upgrade belongs to infrastructure workstream outside ticket-002 allowedPaths
+2026-08-14 cross-workstream coordination
+INFRASTRUCTURE_BRANCH=ticket/003-dsl-checker-migration
+INFRASTRUCTURE_HEAD=6acf9f3
+INFRASTRUCTURE_GOVERNANCE=PASS
+INFRASTRUCTURE_DOCKER_BUILD=PASS
+OLD_MAIN_MANIFEST_THROUGH_COMPATIBILITY_IMAGE=PASS
+TICKET_002_MANIFEST_THROUGH_COMPATIBILITY_IMAGE=PASS
+INTEGRATION_ORDER=ticket-003 protected merge; ticket-002 rebase; ticket-002 AC-04 rerun
+CURRENT_TICKET_STATE=IN_PROGRESS/EDIT

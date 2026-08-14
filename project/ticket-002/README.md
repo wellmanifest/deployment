@@ -36,11 +36,13 @@ policy, and an immutable lock to the exact shared DSL schema revision.
 - Current DSL manifest and standards lock: PASS.
 - Repository governance: `GOV-PASS` with zero findings.
 - Docker build: PASS.
-- Docker conformance: BLOCKED because the image intentionally embeds DSL
-  checker revision `550e5f…`, which rejects the current v1 fields
-  `publicationPolicy`, `standardsLock` and `documentation.vocabularyKind`.
-  Updating `Dockerfile` belongs to the separate `infrastructure` workstream
-  and is outside this ticket's write scope.
+- Docker conformance on this branch: BLOCKED because its base image still
+  embeds DSL checker revision `550e5f…`, which rejects the current v1 fields.
+- Coordinated infrastructure candidate
+  `ticket/003-dsl-checker-migration@6acf9f3` validates both this manifest and
+  the old `main` manifest with networking disabled. It must pass protected
+  review and land first; ticket-002 can then rebase and run its own AC-04
+  without combining two implementation tickets in one diff.
 
 ## Participants
 

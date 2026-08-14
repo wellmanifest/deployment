@@ -30,13 +30,16 @@ needed.
   no syntax, runtime or authority change.
 - Added the current fields and exact DSL lock; host conformance and governance
   pass, and the required image builds.
+- Prepared and independently validated the Docker compatibility change under
+  infrastructure-owned ticket-003. Its exact-schema dispatcher accepts both
+  migration revisions and fails closed for unlisted revisions.
 
 ## Blockers
 
 - None inside the recorded intent; proceed without a second confirmation.
 - New authority remains required for destructive action, secret access, new
   external coordination, material objective expansion and trusted merge.
-- Docker conformance remains on checker revision `550e5f…` and rejects the
-  fields required by revision `b7d059…`. `Dockerfile` is owned by the distinct
-  infrastructure workstream, so this integration ticket cannot update it or
-  claim AC-04 until a coordinated infrastructure change is integrated.
+- This branch remains based on the old image and cannot claim AC-04 until
+  infrastructure ticket-003 passes protected review, lands on `main`, and
+  ticket-002 is rebased. The compatible image has already validated this exact
+  manifest; the remaining boundary is integration order, not a DSL defect.
