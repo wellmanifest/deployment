@@ -12,6 +12,9 @@
   conformance checker migration-safe for the exact old and new DSL revisions.
   Published through exact-head Validator App approval and protected merge;
   the slice coordinates ticket-002 without taking ownership of its manifest.
+- [ ] [`ticket-002`](project/ticket-002/README.md) — restore current DSL
+  manifest conformance and immutable shared-standard provenance without
+  changing deployment semantics. State: `IN_PROGRESS / EDIT`.
 
 - [x] [`ticket-001`](project/ticket-001/README.md) — define and locally validate the initial deployment
   DSL, strict schema, adoption guidance, architecture, and conformance binding.
