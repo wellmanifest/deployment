@@ -43,6 +43,9 @@ policy, and an immutable lock to the exact shared DSL schema revision.
   `DONE` on protected `main`; this ticket remains a manifest-only migration.
 - Ticket-005's exact-schema hosted workflow is merged on protected `main`, so
   CI now selects checker `b7d059…` for this manifest without a mutable ref.
+- Hosted `test` and `windows-governance` passed on implementation head
+  `d830a7abb7f5d52ec5768962eb2730e30ca50078`; the test included the
+  networkless Docker conformance run with the current checker.
 
 ## Participants
 

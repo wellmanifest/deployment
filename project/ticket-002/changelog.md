@@ -16,3 +16,5 @@
   architecture, budgets or deployment semantics.
 - Rebased onto the protected hosted checker dispatcher and refreshed the same
   unchanged intent to the final dependency merge.
+- Recorded green hosted implementation checks in a governance-only publication
+  evidence commit after the history-rewriting rebase.
