@@ -39,11 +39,12 @@ needed.
   unchanged-scope continuation authorization and reran range governance.
 - Rebased once more after the hosted exact-schema dispatcher landed and
   refreshed the unchanged intent to that final protected base.
+- Published through exact-head Validator App approval, verified protected-main
+  read-back and observed automatic source-branch cleanup.
 
 ## Blockers
 
 - None inside the recorded intent; proceed without a second confirmation.
 - New authority remains required for destructive action, secret access, new
   external coordination, material objective expansion and trusted merge.
-- The infrastructure dependency is resolved; independent Validator App
-  approval remains the only publication boundary.
+- None; implementation and protected publication are complete.
