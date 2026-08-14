@@ -57,10 +57,7 @@
       ],
       "responsibilityChanges": false,
       "interfaceChanges": [],
-      "dataChanges": [
-        "Add exact current DSL checker bytes alongside the existing checker",
-        "Make checker selection an explicit two-revision migration policy"
-      ],
+      "dataChanges": [],
       "ui": {"impact": "none", "states": [], "evidence": []},
       "rollback": "Revert the Dockerfile-only commit; the old main profile continues to use its original checker."
     },
