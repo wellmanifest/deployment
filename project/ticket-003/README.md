@@ -3,7 +3,7 @@
 - **ID**: ticket-003
 - **Owner**: unresolved:human
 - **Status**: IN_PROGRESS
-- **Workflow state**: EDIT
+- **Workflow state**: PUBLICATION
 - **Created**: 2026-08-14
 
 ## Goal and scope
@@ -15,14 +15,24 @@ revisions fail closed.
 
 ## Acceptance criteria
 
-- [ ] AC-01: The ticket binds explicit execution authorization to
+- [x] AC-01: The ticket binds explicit execution authorization to
   `main@852f3f9`, one infrastructure file and zero runtime dependencies.
-- [ ] AC-02: Docker downloads the existing `550e5f…` and current `b7d059…`
+- [x] AC-02: Docker downloads the existing `550e5f…` and current `b7d059…`
   checkers with exact ADD checksums.
-- [ ] AC-03: Runtime selects a checker only for the two exact raw schema URIs
+- [x] AC-03: Runtime selects a checker only for the two exact raw schema URIs
   and rejects every unknown or mutable schema reference.
-- [ ] AC-04: The image validates both the current main manifest and the
+- [x] AC-04: The image validates both the current main manifest and the
   ticket-002 candidate; governance and Docker build/run checks pass.
+
+## Validation state
+
+- Repository governance: `GOV-PASS` with zero findings.
+- Docker build: PASS with both checker downloads verified by SHA-256.
+- Current `main` manifest through the compatibility service command: PASS.
+- Ticket-002 manifest through the image's exact-schema dispatcher: PASS with
+  networking disabled and the candidate manifest mounted read-only.
+- Publication remains subject to protected exact-head review and merge; this
+  ticket does not grant that authority.
 
 ## Risks
 

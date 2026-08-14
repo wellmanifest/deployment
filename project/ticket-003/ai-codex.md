@@ -29,9 +29,18 @@ older checker after failure.
   manifest change instead of widening either write scope.
 - Kept `integrationTicket` null because ticket-002 is not yet present on the
   target branch; governance correctly forbids a cross-branch phantom link.
+- Added the current `b7d059…` checker beside the compatibility checker, with
+  immutable source URLs and exact Docker `ADD --checksum` bindings.
+- Added fail-closed dispatch keyed only by the manifest's exact `$schema` URI;
+  validation failure is never retried with another checker.
+- Preserved the historical checker path used explicitly by `compose.yml`, so
+  the infrastructure slice remains independently valid on `main`.
+- Verified the old manifest through Compose and the ticket-002 candidate
+  through the image dispatcher with networking disabled.
 
 ## Blockers
 
-- None inside the recorded intent; proceed without a second confirmation.
+- None inside the recorded intent; implementation is ready for publication
+  review.
 - New authority remains required for destructive action, secret access, new
   external coordination, material objective expansion and trusted merge.
