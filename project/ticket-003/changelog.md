@@ -8,3 +8,5 @@
   checksums.
 - Added fail-closed checker selection for the two exact manifest schema URIs.
 - Preserved the old Compose entrypoint and validated both migration profiles.
+- Closed the infrastructure ticket after exact-head hosted checks, Validator
+  App approval, explicit merge, protected-main read-back and branch cleanup.

@@ -2,8 +2,8 @@
 
 - **ID**: ticket-003
 - **Owner**: unresolved:human
-- **Status**: IN_PROGRESS
-- **Workflow state**: PUBLICATION
+- **Status**: DONE
+- **Workflow state**: DONE
 - **Created**: 2026-08-14
 
 ## Goal and scope
@@ -33,8 +33,13 @@ revisions fail closed.
   networking disabled and the candidate manifest mounted read-only.
 - Existing manifest with a third, unlisted schema URI: rejected before checker
   execution with `DSL-MANIFEST-001` as required.
-- Publication remains subject to protected exact-head review and merge; this
-  ticket does not grant that authority.
+- Hosted `test` and `windows-governance` checks passed on exact head
+  `6be23a215b41ba1966858450f5920c150a3aa3d1`.
+- Validator run `31837653093` completed successfully and App review
+  `4940927243` approved that exact head.
+- The Validator App explicitly merged PR #2 as
+  `0f53c3e9541daa70ec7319bd0b36337a1a6b3646`; protected `main` read-back
+  returned that commit and the source branch was deleted.
 
 ## Risks
 

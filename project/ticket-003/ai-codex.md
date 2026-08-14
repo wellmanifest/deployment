@@ -39,10 +39,13 @@ older checker after failure.
   through the image dispatcher with networking disabled.
 - Verified negative dispatch with an existing third-profile manifest; the
   image rejects its unlisted schema URI with `DSL-MANIFEST-001`.
+- Observed hosted checks on exact head `6be23a215b41ba1966858450f5920c150a3aa3d1`,
+  Validator run `31837653093`, App review `4940927243`, explicit merge
+  `0f53c3e9541daa70ec7319bd0b36337a1a6b3646`, protected-main read-back and
+  source branch cleanup.
 
 ## Blockers
 
-- None inside the recorded intent; implementation is ready for publication
-  review.
+- None. The bounded infrastructure migration and publication are complete.
 - New authority remains required for destructive action, secret access, new
   external coordination, material objective expansion and trusted merge.
