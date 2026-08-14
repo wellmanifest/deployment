@@ -1,5 +1,8 @@
 # Project roadmap
 
+- [ ] [`ticket-005`](project/ticket-005/README.md) — select the hosted CI DSL
+  checkout from an exact schema-to-SHA allowlist. State: `IN_PROGRESS / EDIT`;
+  this P0 repair unblocks ticket-002 without weakening immutable validation.
 - [x] [`ticket-004`](project/ticket-004/README.md) — route every Compose
   conformance run through the image's exact-schema dispatcher. Published by
   exact-head Validator App approval and protected merge; both coordinated
