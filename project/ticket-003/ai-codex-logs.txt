@@ -21,4 +21,7 @@ docker run --rm --network none --mount type=bind,src=<ticket-002-worktree>/dsl-m
 DSL-PASS: passed (0 errors)
 CURRENT_MAIN_PROFILE=550e5f441c709e15f2679c1af151352d1eba2f1e
 TICKET_002_PROFILE=b7d0595c95e5abbb48ebfdbdae0bc6d43c6f82f4
+UNLISTED_SCHEMA_PROFILE=https://wellmanifest.com/schemas/dsl-manifest/v1
+UNLISTED_SCHEMA_RESULT=REJECTED DSL-MANIFEST-001
+NEGATIVE_SCHEMA_DISPATCH=PASS
 WORKFLOW_STATE=PUBLICATION

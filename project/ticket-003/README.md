@@ -31,6 +31,8 @@ revisions fail closed.
 - Current `main` manifest through the compatibility service command: PASS.
 - Ticket-002 manifest through the image's exact-schema dispatcher: PASS with
   networking disabled and the candidate manifest mounted read-only.
+- Existing manifest with a third, unlisted schema URI: rejected before checker
+  execution with `DSL-MANIFEST-001` as required.
 - Publication remains subject to protected exact-head review and merge; this
   ticket does not grant that authority.
 

@@ -37,6 +37,8 @@ older checker after failure.
   the infrastructure slice remains independently valid on `main`.
 - Verified the old manifest through Compose and the ticket-002 candidate
   through the image dispatcher with networking disabled.
+- Verified negative dispatch with an existing third-profile manifest; the
+  image rejects its unlisted schema URI with `DSL-MANIFEST-001`.
 
 ## Blockers
 
