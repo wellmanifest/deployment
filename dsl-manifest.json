@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/wellmanifest/dsl/550e5f441c709e15f2679c1af151352d1eba2f1e/schemas/dsl-manifest.schema.json",
+  "$schema": "https://raw.githubusercontent.com/wellmanifest/dsl/b7d0595c95e5abbb48ebfdbdae0bc6d43c6f82f4/schemas/dsl-manifest.schema.json",
   "schema": "wellmanifest.dsl/manifest/v1",
   "id": "wellmanifest.deployment",
   "name": "Wellmanifest Deployment DSL",
@@ -85,6 +85,7 @@
     "strict": true
   },
   "documentation": {
+    "vocabularyKind": "commands",
     "commandRoot": "docs",
     "errorRoot": "docs/ERROR",
     "criticalRoot": "docs/CRITICAL",
@@ -109,12 +110,19 @@
     "requireEvaluable": true,
     "blockUnresolvedSecurity": true
   },
+  "publicationPolicy": {
+    "declaredTier": "controlled",
+    "deterministic": true,
+    "independentReview": true,
+    "externalAuthority": true,
+    "runtimeIsolation": true
+  },
   "conformance": {
     "levels": [
       "manifest"
     ],
     "commands": [
-      "python3 ../dsl/src/dsl_check.py validate --root . dsl-manifest.json",
+      "python3 ../dsl/src/dsl_check.py validate dsl-manifest.json",
       "docker compose run --rm conformance"
     ],
     "validExamples": [],
@@ -125,7 +133,7 @@
       "standard": "wellmanifest.dsl",
       "version": "0.1.0-dev",
       "relation": "implements",
-      "uri": "https://github.com/wellmanifest/dsl/tree/550e5f441c709e15f2679c1af151352d1eba2f1e"
+      "uri": "https://github.com/wellmanifest/dsl/tree/b7d0595c95e5abbb48ebfdbdae0bc6d43c6f82f4"
     },
     {
       "standard": "semcod.redeploy",
@@ -139,5 +147,22 @@
       "relation": "maps-to",
       "uri": "https://github.com/subactor/platform/tree/272fab648a9fb55e54e280fdd895e3f53521dbe2/config/deployment-bindings"
     }
-  ]
+  ],
+  "standardsLock": {
+    "schema": "wellmanifest.standards-lock/v1",
+    "entries": [
+      {
+        "standard": "wellmanifest.dsl",
+        "version": "0.1.0-dev",
+        "repository": "https://github.com/wellmanifest/dsl",
+        "revision": "b7d0595c95e5abbb48ebfdbdae0bc6d43c6f82f4",
+        "contracts": [
+          {
+            "ref": "https://wellmanifest.dev/schemas/dsl-manifest/v1",
+            "digest": "sha256:34d356b76bbd483372df84bb986e15bb84e9c1f8b11b7dc9e3a6c7276c85ed13"
+          }
+        ]
+      }
+    ]
+  }
 }
