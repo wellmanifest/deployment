@@ -10,3 +10,5 @@
   revision selections plus the fail-closed branch.
 - Recorded green hosted implementation checks in a governance-only publication
   evidence commit so push-range and full PR-range remain independently gated.
+- Closed after exact-head protected publication and successful end-to-end
+  completion of the dependent ticket-002 migration.
