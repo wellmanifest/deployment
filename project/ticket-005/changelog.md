@@ -8,3 +8,5 @@
   ticket-002 protected publication attempt.
 - Added a pre-checkout exact-schema allowlist and verified both supported
   revision selections plus the fail-closed branch.
+- Recorded green hosted implementation checks in a governance-only publication
+  evidence commit so push-range and full PR-range remain independently gated.
