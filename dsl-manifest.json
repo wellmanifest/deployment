@@ -38,12 +38,12 @@
     {
       "path": "schemas/deployment.schema.json",
       "role": "normative-source",
-      "digest": "sha256:f09d029469da169384fc8df2cab46e89d1d66f71233817444ca4147e5a0f50a8"
+      "digest": "sha256:8f2a555b9465057df83c0e58a0bb611e4bc6593010966fb0b4cf28460105c136"
     },
     {
       "path": "docs/DEPLOYMENT.md",
       "role": "documentation",
-      "digest": "sha256:6115929f3a910ac9460854d3096cbaffc86c7bdf7bf026689e480f3fbe7ed455"
+      "digest": "sha256:bb301c9e653f74a574c0737d4da7a9d401e170b4f7a4e80dfa3205c9513c21bd"
     },
     {
       "path": "docs/ARCHITECTURE.md",
@@ -81,6 +81,7 @@
     "responseSchemas": [],
     "naturalLanguage": "forbidden",
     "sourceSchema": null,
+    "decisionProtocol": "none",
     "modelAuthority": "none",
     "strict": true
   },

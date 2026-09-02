@@ -80,6 +80,15 @@ schema includes canonical atomic and canary examples.
   source SHA-256. A successful apply followed by failed or stale verification
   yields `applied_unverified`.
 
+`deploy-verify-active-runtime`
+: A valid build, merged revision, release directory, or direct checkout smoke
+  MUST NOT prove what the operator actually runs. Verification resolves the
+  active process/image/launcher identity, proves its revision and entrypoint
+  against `source`, then executes a bounded behavior contract through that same
+  operator-facing entrypoint. Dirty, detached, stale, unknown, or mismatched
+  activation yields `applied_unverified`; do not silently fall back to testing
+  the candidate checkout.
+
 `deploy-rollback-honest`
 : Content rollback activates the previous release and is itself verified.
   Success yields `rolled_back`, never `verified`. Exhausted or failed rollback
@@ -105,7 +114,7 @@ A conforming definition supplies:
 | `preflight` | Named deterministic checks, isolated Digital Twin posture, fail-closed dry-run, and SHA-256 plan hashing. |
 | `authority` | External issuer and mandatory exact, fresh, single-use plan binding. |
 | `apply` | Adapter identity, required capabilities, idempotency policy, timeout, and retry budget. |
-| `verify` | Origin and public probes plus source-content identity; HTTP status alone is explicitly insufficient. |
+| `verify` | Active-runtime identity and behavior smoke, origin/public probes, plus source-content identity; HTTP status or candidate-checkout tests alone are explicitly insufficient. |
 | `rollback` | Previous-release activation, triggers, retry budget, post-rollback verification, and human escalation. |
 | `secrets` | Executor-Vault resolution and optional opaque scoped references; values are forbidden. |
 | `receipt` | Required non-secret result contract and complete typed outcome vocabulary. |
@@ -138,7 +147,8 @@ Planning produces a canonical non-secret plan with an exact `inputHash` and
 `wellmanifest.deployment-receipt/v1`. The receipt SHOULD include the definition
 ID/version, source and binding digests, plan hash, external grant identity,
 executor/adapter version, per-stage evidence, activated release, previous
-release, verification evidence digests, timestamps, and final outcome.
+release, resolved active revision and entrypoint, operator-contract smoke
+evidence, verification evidence digests, timestamps, and final outcome.
 
 The only allowed final outcomes are:
 
@@ -225,4 +235,3 @@ reuses rollout patterns from
 [`semcod/redeploy`](https://github.com/semcod/redeploy/tree/d9c7dd873cd2cedb6bb082bf2757661f4f3f3da9),
 and incorporates the exact-binding and rollback lessons recorded in
 [`subactor/platform`](https://github.com/subactor/platform/tree/272fab648a9fb55e54e280fdd895e3f53521dbe2).
-
