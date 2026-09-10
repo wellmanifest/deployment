@@ -1,0 +1,74 @@
+{
+  "schema": "new-project.intent/v3",
+  "ticket": "ticket-008",
+  "summary": "Require a deployed unit to attest the revision it is running",
+  "workstream": "integration",
+  "classification": {
+    "kind": "FEATURE",
+    "priority": "P1",
+    "origin": "requested"
+  },
+  "allowedPaths": [
+    "docs/DEPLOYMENT.md",
+    "dsl-manifest.json",
+    "project/ticket-008/**",
+    "TODO.md",
+    "project/TICKETS.md"
+  ],
+  "forbiddenPaths": [
+    "project/ticket-*/user-*.md"
+  ],
+  "stacks": [],
+  "dependsOn": [],
+  "conflictsWith": [],
+  "integrationTicket": null,
+  "delivery": {
+    "acceptedBaseSha": "6aab422b5e662815dcb911ffd81a412340864d76",
+    "targetBranch": "main",
+    "outcome": "The contract carries an invariant for the interval after apply: a deployed unit must name the revision it runs and that name must be comparable to the merged revision.",
+    "nonGoals": [
+      "No schema field, checker or executor capability; the invariant must exist before an implementation can claim to satisfy it.",
+      "No change to deploy-verify-content, which covers apply time and is untouched."
+    ],
+    "complexity": "XS",
+    "estimatedMinutes": 10,
+    "budgets": {
+      "maxImplementationFiles": 2,
+      "maxAffectedComponents": 1,
+      "maxPublicInterfaceChanges": 0,
+      "maxRuntimeDependencies": 0
+    },
+    "architecture": {
+      "status": "accepted",
+      "decision": "Add deploy-running-attestable beside the existing core invariants in the same normative style, and record its provenance as measured operation rather than speculation. Refresh the pinned digest for the edited document in dsl-manifest.json.",
+      "components": [
+        {
+          "name": "deployment-contract",
+          "paths": [
+            "docs/DEPLOYMENT.md",
+            "dsl-manifest.json"
+          ]
+        }
+      ],
+      "responsibilityChanges": false,
+      "interfaceChanges": [],
+      "dataChanges": [],
+      "ui": {
+        "impact": "none",
+        "states": [],
+        "evidence": []
+      },
+      "rollback": "Remove the invariant and its provenance, then restore the previous document digest."
+    },
+    "runtimeDependencies": [],
+    "validation": [
+      {
+        "criterion": "AC-01",
+        "commands": [
+          "./project/governance-check.sh --base origin/main"
+        ],
+        "evidence": "Measured across one day of operation in subactor on 2026-09-09: a service ran four hours on a superseded command, an executor ran a revision two merges behind its own fix, and a session reported a bug fixed five minutes earlier. Deployment receipts were produced and parsed, but no consumer compared them to the merged head."
+      }
+    ]
+  }
+}
