@@ -31,7 +31,7 @@
       "No change to deploy-verify-content, which covers apply time and is untouched."
     ],
     "complexity": "XS",
-    "estimatedMinutes": 20,
+    "estimatedMinutes": 10,
     "budgets": {
       "maxImplementationFiles": 2,
       "maxAffectedComponents": 1,
