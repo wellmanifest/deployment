@@ -96,6 +96,15 @@ schema includes canonical atomic and canary examples.
   successful deployment. DNS/boundary rollback remains a separate human-only
   decision.
 
+`deploy-running-attestable`
+: A deployed unit MUST be able to state the exact revision it is running, and
+  that statement MUST be comparable to the revision the repository has merged.
+  A receipt that is written and never read back is not attestation. Verification
+  at apply time does not answer this question: drift appears afterwards, when the
+  repository advances and the running artifact does not. An executor MUST NOT
+  report a merged change as delivered until the running revision is observed to
+  contain it.
+
 `deploy-secrets-opaque`
 : Only opaque names, references, and scopes may appear in the document. Secret
   values are resolved in executor-owned Vault and redacted from plans, logs,
@@ -235,3 +244,14 @@ reuses rollout patterns from
 [`semcod/redeploy`](https://github.com/semcod/redeploy/tree/d9c7dd873cd2cedb6bb082bf2757661f4f3f3da9),
 and incorporates the exact-binding and rollback lessons recorded in
 [`subactor/platform`](https://github.com/subactor/platform/tree/272fab648a9fb55e54e280fdd895e3f53521dbe2).
+
+`deploy-running-attestable` records a full day of measured operation in that
+fleet on 2026-09-09. Every gate there acts at the commit or pull-request
+boundary; nothing observes what is running. Measured that day: a service ran
+four hours on a command a merged change had superseded, an executor ran a
+revision two merges behind while its own fix sat in the default branch, and a
+session hit a defect that had been fixed five minutes earlier. Deployment
+receipts were produced and parsed, but no consumer compared them to the merged
+head, so each drift was rediscovered as a fresh defect. Three separate
+investigations that day diagnosed problems that no longer existed, in every case
+because a source artifact was read instead of the running one.

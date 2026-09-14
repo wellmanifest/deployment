@@ -28,7 +28,7 @@
   "conflictsWith": [],
   "integrationTicket": null,
   "delivery": {
-    "acceptedBaseSha": "6aab422b5e662815dcb911ffd81a412340864d76",
+    "acceptedBaseSha": "7c1af04d5cea33f0e8240508428b2c3a7f71fb04",
     "targetBranch": "main",
     "outcome": "Prevent verified deployment receipts when the active runtime source, entrypoint, or behavior differs from the exact selected candidate",
     "nonGoals": [

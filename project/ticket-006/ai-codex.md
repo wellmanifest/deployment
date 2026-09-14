@@ -24,6 +24,15 @@ behavioral smoke are bound to the same candidate.
 
 - Initialized the bounded ticket and recorded SESSION_EXECUTION_AUTHORIZATION
   from the request to execute this work.
+- 2026-09-14: user continued after the exact worktree-relocation question.
+  Git moved the checkout into the canonical v5 path without changing HEAD.
+  Continuation preserves main's running-attestation invariant while resolving
+  the content conflict and removes unsupported `llm.decisionProtocol=none`
+  from the pinned old DSL manifest (mode and model authority remain `none`).
+  Ticket-009 was independently approved and merged through PR #13. Its
+  published governance is now inherited from main. The prior uncommitted merge
+  was replaced against that exact base after verifying a content-addressed
+  recovery snapshot; the resolved deployment changes remain identical.
 
 ## Blockers
 

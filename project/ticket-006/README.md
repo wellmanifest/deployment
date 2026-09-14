@@ -1,9 +1,9 @@
 # Ticket 006: Prevent runtime activation provenance regressions
 
 - **ID**: ticket-006
-- **Owner**: unresolved:human
+- **Owner**: agent:codex
 - **Status**: IN_PROGRESS
-- **Workflow state**: EDIT
+- **Workflow state**: PUBLICATION
 - **Created**: 2026-08-30
 
 ## Goal and scope

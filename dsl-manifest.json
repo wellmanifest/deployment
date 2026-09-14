@@ -43,7 +43,7 @@
     {
       "path": "docs/DEPLOYMENT.md",
       "role": "documentation",
-      "digest": "sha256:bb301c9e653f74a574c0737d4da7a9d401e170b4f7a4e80dfa3205c9513c21bd"
+      "digest": "sha256:dfa52e48cc513b18d26879971e92b500eef32a032eecd75cbef6e7eac6f0eb87"
     },
     {
       "path": "docs/ARCHITECTURE.md",
@@ -81,7 +81,6 @@
     "responseSchemas": [],
     "naturalLanguage": "forbidden",
     "sourceSchema": null,
-    "decisionProtocol": "none",
     "modelAuthority": "none",
     "strict": true
   },
