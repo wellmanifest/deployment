@@ -26,8 +26,12 @@ Local validation: managed gate, required-checks names, host hook, Worktrees v5,
 the pinned DSL checker, two canonical schema examples and networkless Docker
 conformance passed. The broader standard-pack baseline remains audit-only and
 reports seven unadopted packs; no claim of full pack enforcement is made.
-The published package supplies tiered budgets; this ticket remains bounded to
-five non-managed implementation files and adds no runtime dependency.
+The published package supplies tiered budgets. Under the user's authorization
+to adjust nonconflicting limits, this ticket uses class M (at most nine
+non-managed files, still two components and no runtime dependencies). CI exposed
+missing DSL ownership for adopted schemas. The target-owned projection renderer
+binds all managed package files directly to the verified lock; its regression
+tests and CI check keep later adoptions reproducible without weakening DSL gates.
 
 ## Participants
 
