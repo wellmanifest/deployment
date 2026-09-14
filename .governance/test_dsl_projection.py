@@ -1,8 +1,11 @@
 """Regression checks for target-owned, lock-derived package ownership."""
 import hashlib
 import json
+import os
 from pathlib import Path
+import subprocess
 import tempfile
+import textwrap
 import unittest
 
 from render_dsl_manifest import OUTPUT, SOURCE, project, render
@@ -77,6 +80,58 @@ class ProjectionTest(unittest.TestCase):
     def test_real_adopted_package(self):
         root = Path(__file__).resolve().parents[1]
         render(root, check=True)
+
+
+class ChangeBoundaryTest(unittest.TestCase):
+    def setUp(self):
+        self.root = Path(__file__).resolve().parents[1]
+        workflow = (self.root / ".github/workflows/ci.yml").read_text()
+        step = workflow.split("      - name: Resolve exact change boundary\n", 1)[1]
+        step = step.split("      - name:", 1)[0]
+        self.command = textwrap.dedent(step.split("        run: |\n", 1)[1])
+        self.head = self.git("HEAD")
+        self.base = self.git("refs/remotes/origin/main")
+
+    def git(self, ref):
+        return subprocess.check_output(["git", "rev-parse", ref], cwd=self.root, text=True).strip()
+
+    def run_boundary(self, event, ref, before, head=None):
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "output"
+            env = {**os.environ, "EVENT_NAME": event, "REF_NAME": ref,
+                   "DEFAULT_BRANCH": "main", "EVENT_BASE_SHA": before,
+                   "EVENT_HEAD_SHA": head or self.head, "GITHUB_OUTPUT": str(output)}
+            result = subprocess.run(["bash", "-c", self.command], cwd=self.root,
+                                    env=env, capture_output=True, text=True)
+            values = dict(line.split("=", 1) for line in output.read_text().splitlines()) if output.exists() else {}
+            return result.returncode, values
+
+    def test_followup_push_uses_integration_base_not_previous_ticket_head(self):
+        code, output = self.run_boundary("push", "ticket/009-atomic-governance-adoption", self.head)
+        self.assertEqual(0, code)
+        self.assertEqual(self.base, output["base"])
+        self.assertEqual("range", output["mode"])
+
+    def test_pull_request_preserves_exact_event_base(self):
+        code, output = self.run_boundary("pull_request", "13/merge", self.base)
+        self.assertEqual(0, code)
+        self.assertEqual(self.base, output["base"])
+
+    def test_default_branch_uses_repository_mode(self):
+        code, output = self.run_boundary("push", "main", "0" * 40)
+        self.assertEqual(0, code)
+        self.assertEqual("repository", output["mode"])
+
+    def test_manual_ticket_run_uses_integration_base(self):
+        code, output = self.run_boundary("workflow_dispatch", "ticket/009-atomic-governance-adoption", "")
+        self.assertEqual(0, code)
+        self.assertEqual(self.base, output["base"])
+
+    def test_missing_pr_base_and_invalid_head_fail_closed(self):
+        for before, head in (("", self.head), (self.base, "invalid")):
+            with self.subTest(before=before, head=head):
+                code, _ = self.run_boundary("pull_request", "13/merge", before, head)
+                self.assertNotEqual(0, code)
 
 
 if __name__ == "__main__":
