@@ -38,12 +38,12 @@
     {
       "path": "schemas/deployment.schema.json",
       "role": "normative-source",
-      "digest": "sha256:f09d029469da169384fc8df2cab46e89d1d66f71233817444ca4147e5a0f50a8"
+      "digest": "sha256:8f2a555b9465057df83c0e58a0bb611e4bc6593010966fb0b4cf28460105c136"
     },
     {
       "path": "docs/DEPLOYMENT.md",
       "role": "documentation",
-      "digest": "sha256:935669c69f92a5b0c88bced013a4f3fb4dd8b3a6b679343524c3115d6118f5b0"
+      "digest": "sha256:dfa52e48cc513b18d26879971e92b500eef32a032eecd75cbef6e7eac6f0eb87"
     },
     {
       "path": "docs/ARCHITECTURE.md",

@@ -1,0 +1,86 @@
+{
+  "schema": "new-project.intent/v3",
+  "ticket": "ticket-006",
+  "summary": "Prevent runtime activation provenance regressions",
+  "workstream": "integration",
+  "classification": {
+    "kind": "SERVICE",
+    "priority": "P1",
+    "origin": "requested"
+  },
+  "allowedPaths": [
+    "TODO.md",
+    "project/TICKETS.md",
+    "schemas/deployment.schema.json",
+    "docs/DEPLOYMENT.md",
+    "dsl-manifest.json",
+    "project/ticket-006/**"
+  ],
+  "forbiddenPaths": [
+    "project/ticket-*/user-*.md",
+    ".governance/**",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "GEMINI.md"
+  ],
+  "stacks": ["docker"],
+  "dependsOn": [],
+  "conflictsWith": [],
+  "integrationTicket": null,
+  "delivery": {
+    "acceptedBaseSha": "7c1af04d5cea33f0e8240508428b2c3a7f71fb04",
+    "targetBranch": "main",
+    "outcome": "Prevent verified deployment receipts when the active runtime source, entrypoint, or behavior differs from the exact selected candidate",
+    "nonGoals": [
+      "Prescribe a process manager, filesystem layout, symlink strategy, or deployment adapter",
+      "Grant deployment authority or perform a production deployment",
+      "Treat candidate-checkout tests or process liveness as activation proof"
+    ],
+    "complexity": "S",
+    "estimatedMinutes": 20,
+    "budgets": {
+      "maxImplementationFiles": 5,
+      "maxAffectedComponents": 1,
+      "maxPublicInterfaceChanges": 0,
+      "maxRuntimeDependencies": 0
+    },
+    "architecture": {
+      "status": "accepted",
+      "decision": "Extend deployment verification with activation revision, entrypoint and operator-contract smoke assertions while preserving adapter neutrality",
+      "components": [
+        {
+          "name": "deployment-contract",
+          "paths": [
+            "TODO.md",
+            "project/TICKETS.md",
+            "schemas/deployment.schema.json",
+            "docs/DEPLOYMENT.md",
+            "dsl-manifest.json",
+            "project/ticket-006/**"
+          ]
+        }
+      ],
+      "responsibilityChanges": false,
+      "interfaceChanges": [],
+      "dataChanges": [],
+      "ui": {
+        "impact": "none",
+        "states": [],
+        "evidence": []
+      },
+      "rollback": "Revert this ticket commit before protected publication."
+    },
+    "runtimeDependencies": [],
+    "validation": [
+      {
+        "criterion": "AC-04",
+        "commands": [
+          "../dsl/src/dsl_check.py validate --root . dsl-manifest.json",
+          "docker compose run --rm conformance",
+          "./project/governance-check.sh --actor agent"
+        ],
+        "evidence": "project/ticket-006/ai-codex-logs.txt"
+      }
+    ]
+  }
+}

@@ -1,0 +1,5 @@
+2026-08-30 SESSION_EXECUTION_AUTHORIZATION recorded from the user's explicit request to implement regression prevention.
+2026-08-30 Added schema-required activation revision, entrypoint and operator-contract probes.
+2026-09-02 python3 ../../dsl/src/dsl_check.py validate --root . dsl-manifest.json: DSL-PASS (0 errors).
+2026-09-02 docker compose run --rm conformance: DSL-PASS (0 errors).
+2026-09-02 ./project/governance-check.sh --actor agent: GOV-PASS (0 errors, 0 warnings).

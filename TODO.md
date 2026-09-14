@@ -1,5 +1,9 @@
 # Project roadmap
 
+- [ ] [`ticket-006`](project/ticket-006/README.md) — require active runtime
+  revision, entrypoint and operator-contract smoke evidence before a deployment
+  may report `verified`. Status: `IN_PROGRESS / VALIDATION`; workstream:
+  `integration`.
 - [x] [`ticket-005`](project/ticket-005/README.md) — select the hosted CI DSL
   checkout from an exact schema-to-SHA allowlist. Published by exact-head
   Validator approval; ticket-002 subsequently passed the current-checker path
