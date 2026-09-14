@@ -1,0 +1,38 @@
+{
+  "schema": "new-project.intent/v3",
+  "ticket": "ticket-009",
+  "summary": "Adopt published governance for atomic delivery",
+  "workstream": "governance",
+  "classification": {
+    "kind": "BUG",
+    "priority": "P1",
+    "origin": "requested"
+  },
+  "allowedPaths": ["project/ticket-009/**", "TODO.md", "project/TICKETS.md", ".governance/**", ".subactor/manifest.json", ".subactor/.gitignore", ".github/workflows/ci.yml", ".github/workflows/new-project-governance.yml", ".github/copilot-instructions.md", ".aider.conf.yml", "wellmanifest_governance.py", "worktree-guard.yaml", ".githooks/pre-commit", ".gitignore", "AGENTS.md", "CLAUDE.md", "GEMINI.md", ".cursor/rules/new-project-standard.mdc", "project/governance-check.sh", "project/governance-check.bat", "project/new-ticket.sh", "scripts/install-agent-hosts.sh", "scripts/runtime.sh"],
+  "forbiddenPaths": ["project/ticket-*/user-*.md"],
+  "stacks": [],
+  "dependsOn": [],
+  "conflictsWith": [],
+  "integrationTicket": null,
+  "delivery": {
+    "standardAdoption": {"sourceRepository": "wellmanifest/new-project", "fromRevision": "3549d21a5a31fea87b2dd4da37d8e8bd793f20f6", "toRevision": "a4178b9cf6fa12540ee7406d7f38391dd4fa1f30", "targetOwnedTransitions": [{"path": ".github/workflows/ci.yml", "baseDigest": "6d96c26cafc25d6987fb310893606360d6b97d56b62b4316f4b0d0bce16e3c26", "headDigest": "52569c1ba235737c7434f1135c9a5b9822a82e23e9ae125b7e50ccfc2fc05469"}]},
+    "acceptedBaseSha": "c93767aaf3fc4876904df868738c42cacdba581f",
+    "targetBranch": "main",
+    "outcome": "Adopt a published atomic-delivery governance package and preserve target CI gates, unblocking standards delivery without history rewriting",
+    "nonGoals": ["No change to deployment schema or semantics", "No waiver of CI or independent approval", "No application runtime deployment"],
+    "complexity": "S",
+    "estimatedMinutes": 30,
+    "budgets": {"maxImplementationFiles": 5, "maxAffectedComponents": 2, "maxPublicInterfaceChanges": 0, "maxRuntimeDependencies": 0},
+    "architecture": {
+      "status": "accepted",
+      "decision": "Use Goal immutable adoption; replace inherited hub required-checks identity with a target instance, preserve Linux and Windows tests, and align the reusable workflow pin",
+      "components": [{"name": "governance-package", "paths": [".governance/**", ".subactor/manifest.json", ".githooks/**", ".gitignore", "AGENTS.md", "CLAUDE.md", "GEMINI.md", ".cursor/rules/**", "project/**", "scripts/**", "project.sh", "project.bat", "TODO.md"]}, {"name": "ci-binding", "paths": [".github/workflows/**"]}],
+      "responsibilityChanges": false,
+      "interfaceChanges": [], "dataChanges": [],
+      "ui": {"impact": "none", "states": [], "evidence": []},
+      "rollback": "Revert this material adoption commit through independent review; preserve prior immutable pin"
+    },
+    "runtimeDependencies": [],
+    "validation": [{"criterion": "AC-03", "commands": ["./project/governance-check.sh --base origin/main --head HEAD --actor agent", "docker compose run --rm conformance"], "evidence": "Independent exact-head CI and Validator publication receipts"}]
+  }
+}
