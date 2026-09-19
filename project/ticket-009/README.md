@@ -2,8 +2,8 @@
 
 - **ID**: ticket-009
 - **Owner**: agent:codex
-- **Status**: IN_PROGRESS
-- **Workflow state**: PUBLICATION
+- **Status**: DONE
+- **Workflow state**: DONE
 - **Created**: 2026-09-14
 
 ## Goal and scope

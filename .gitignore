@@ -15,3 +15,5 @@ findings.json
 /.subactor/receipts/
 /.subactor/cache/
 /.subactor/snapshots/
+.planfile/
+.github/workflows/planfile-github-sync.yml
