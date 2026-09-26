@@ -110,6 +110,19 @@ schema includes canonical atomic and canary examples.
   values are resolved in executor-owned Vault and redacted from plans, logs,
   findings, and receipts.
 
+`deploy-bastion-asymmetric`
+: Management control planes MUST use an isolated asymmetric bastion topology.
+  Management servers do not expose public inbound ports, communicate with worker
+  nodes via outbound-only push vectors (SSH/mTLS), and worker nodes possess zero
+  credentials or routes to the bastion, eliminating lateral movement.
+  See [`ZERO_TRUST_BASTION_AND_KORU_REMEDIATION.md`](ZERO_TRUST_BASTION_AND_KORU_REMEDIATION.md).
+
+`deploy-twin-safe-upgrade`
+: Production rollouts MUST execute the 5-step verified upgrade pipeline: pre-flight
+  digital twin testing, pre-deployment atomic dual database snapshot (PostgreSQL WAL + SQLite),
+  rolling container rebuild, post-deployment live synthetic E2E verification, and
+  automated rollback on failure with fail-closed urirun-mail notification.
+
 ## Inputs
 
 A conforming definition supplies:
