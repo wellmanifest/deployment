@@ -1,0 +1,74 @@
+{
+  "schema": "new-project.intent/v3",
+  "ticket": "ticket-011",
+  "summary": "Standardize zero-trust control bastion and safe upgrades",
+  "workstream": "integration",
+  "classification": {
+    "kind": "SERVICE",
+    "priority": "P2",
+    "origin": "health"
+  },
+  "allowedPaths": [
+    "project/ticket-011/**",
+    "project/ticket-010/README.md",
+    "TODO.md",
+    "project/TICKETS.md",
+    "docs/DEPLOYMENT.md",
+    "docs/ZERO_TRUST_BASTION_AND_KORU_REMEDIATION.md"
+  ],
+  "forbiddenPaths": [
+    "project/ticket-*/user-*.md"
+  ],
+  "stacks": [],
+  "dependsOn": [],
+  "conflictsWith": [],
+  "integrationTicket": null,
+  "delivery": {
+    "acceptedBaseSha": "3624ea9cb9a4951dc20a06ee3524724958f36978",
+    "targetBranch": "main",
+    "outcome": "Standardize zero-trust asymmetric bastion control plane, 5-step safe upgrade pipeline, real-time Koru autonomous remediation, and urirun-mail fail-closed notification patterns.",
+    "nonGoals": [
+      "No breaking changes to existing deployment schema AST"
+    ],
+    "complexity": "S",
+    "estimatedMinutes": 30,
+    "budgets": {
+      "maxImplementationFiles": 5,
+      "maxAffectedComponents": 2,
+      "maxPublicInterfaceChanges": 0,
+      "maxRuntimeDependencies": 0
+    },
+    "architecture": {
+      "status": "accepted",
+      "decision": "Incorporate zero-trust asymmetric bastion control plane and 5-step verified deployment into wellmanifest/deployment standard",
+      "components": [
+        {
+          "name": "deployment-standard",
+          "paths": [
+            "docs/DEPLOYMENT.md",
+            "docs/ZERO_TRUST_BASTION_AND_KORU_REMEDIATION.md"
+          ]
+        }
+      ],
+      "responsibilityChanges": false,
+      "interfaceChanges": [],
+      "dataChanges": [],
+      "ui": {
+        "impact": "none",
+        "states": [],
+        "evidence": []
+      },
+      "rollback": "Revert documentation updates."
+    },
+    "runtimeDependencies": [],
+    "validation": [
+      {
+        "criterion": "AC-01",
+        "commands": [
+          "./project/governance-check.sh"
+        ],
+        "evidence": "Governance check passes."
+      }
+    ]
+  }
+}
