@@ -1,0 +1,40 @@
+{
+  "schema": "wellmanifest.schema-canaries/v1",
+  "base": {
+    "schema": "wellmanifest.firmware-flash-admission/v1",
+    "lifecycle": "development",
+    "lifecycleSource": "rig-ssot",
+    "targetRef": "cores3-1051db412f64",
+    "artifactSha256": "fb1043e27d8657b39ebbc9fa86b5bf4f984665026ef7328659de95a3547e53fb",
+    "transport": "usb",
+    "backup": null,
+    "backupCreated": false,
+    "safeIdleVerified": true
+  },
+  "verifiedBackup": {
+    "receiptRef": "production-recovery-001",
+    "sha256": "0acb72c4d81bc7928204036a7ff728a8a99aef50cfca0c7cb5026eec809206cb",
+    "bytes": 16777216,
+    "verified": true,
+    "targetAndScopeVerified": true
+  },
+  "cases": [
+    {"name": "development USB direct flash", "patch": {}, "valid": true},
+    {"name": "development OTA direct flash", "patch": {"transport": "lan-ota"}, "valid": true},
+    {"name": "development forbids backup read", "patch": {"backupCreated": true}, "valid": false},
+    {"name": "development forbids backup even existing", "patch": {}, "withBackup": true, "valid": false},
+    {"name": "production requires recovery", "patch": {"lifecycle": "production"}, "valid": false},
+    {"name": "production verified new backup", "patch": {"lifecycle": "production", "backupCreated": true}, "withBackup": true, "valid": true},
+    {"name": "production verified reusable backup", "patch": {"lifecycle": "production"}, "withBackup": true, "valid": true},
+    {"name": "production rejects failed verification", "patch": {"lifecycle": "production"}, "withBackup": true, "backupPatch": {"verified": false}, "valid": false},
+    {"name": "production rejects wrong device or scope", "patch": {"lifecycle": "production"}, "withBackup": true, "backupPatch": {"targetAndScopeVerified": false}, "valid": false},
+    {"name": "production rejects empty backup", "patch": {"lifecycle": "production"}, "withBackup": true, "backupPatch": {"bytes": 0}, "valid": false},
+    {"name": "unknown lifecycle rejected", "patch": {"lifecycle": "unknown"}, "valid": false},
+    {"name": "staging needs explicit classification", "patch": {"lifecycle": "staging"}, "valid": false},
+    {"name": "missing lifecycle rejected", "patch": {}, "remove": ["lifecycle"], "valid": false},
+    {"name": "unsafe rig rejected", "patch": {"safeIdleVerified": false}, "valid": false},
+    {"name": "unknown provenance rejected", "patch": {"lifecycleSource": "version-suffix"}, "valid": false},
+    {"name": "artifact digest required", "patch": {"artifactSha256": "latest"}, "valid": false},
+    {"name": "override cannot disable policy", "patch": {"noBackupOverride": true}, "valid": false}
+  ]
+}

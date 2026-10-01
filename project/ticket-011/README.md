@@ -2,8 +2,8 @@
 
 - **ID**: ticket-011
 - **Owner**: human
-- **Status**: IN_PROGRESS
-- **Workflow state**: EDIT
+- **Status**: DONE
+- **Workflow state**: DONE
 - **Created**: 2026-09-26
 
 ## Goal and scope

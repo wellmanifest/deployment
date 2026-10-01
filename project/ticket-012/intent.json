@@ -1,0 +1,52 @@
+{
+  "schema": "new-project.intent/v3",
+  "ticket": "ticket-012",
+  "summary": "Firmware flashing backup policy by deployment lifecycle",
+  "workstream": "integration",
+  "classification": {
+    "kind": "FEATURE",
+    "priority": "P2",
+    "origin": "requested"
+  },
+  "allowedPaths": [
+    "project/ticket-012/**",
+    "TODO.md",
+    "project/TICKETS.md",
+    "docs/README.md",
+    "docs/firmware-flash-policy.json",
+    "docs/information/firmware-flash-backup-policy.md",
+    "schemas/firmware-flash-policy.schema.json",
+    "schemas/firmware-flash-policy.cases.json",
+    "dsl-manifest.json",
+    "project/ticket-011/README.md"
+  ],
+  "forbiddenPaths": [
+    "project/ticket-*/user-*.md"
+  ],
+  "stacks": [],
+  "dependsOn": [],
+  "conflictsWith": [],
+  "integrationTicket": null,
+  "delivery": {
+    "acceptedBaseSha": "8c7a08d94ca50e815169a9def1d51fd949ede2ce",
+    "targetBranch": "main",
+    "outcome": "Define executable admission rules for no-backup development flashing and verified-backup production flashing",
+    "nonGoals": ["No hardware writes", "No invented published standard pin", "No adoption claims based on documentation alone"],
+    "complexity": "S",
+    "estimatedMinutes": 30,
+    "budgets": {"maxImplementationFiles": 5, "maxAffectedComponents": 2, "maxPublicInterfaceChanges": 1, "maxRuntimeDependencies": 0},
+    "architecture": {
+      "status": "accepted",
+      "decision": "One policy owner in wellmanifest/deployment; product adapters enforce a JSON Schema admission contract",
+      "components": [
+        {"name": "firmware-flash-policy", "paths": ["docs/README.md", "docs/firmware-flash-policy.json", "schemas/firmware-flash-policy.schema.json", "schemas/firmware-flash-policy.cases.json"]},
+        {"name": "dsl-manifest", "paths": ["dsl-manifest.json"]}
+      ],
+      "responsibilityChanges": false, "interfaceChanges": ["firmware-flash-admission/v1"], "dataChanges": [],
+      "ui": {"impact": "none", "states": [], "evidence": []},
+      "rollback": "Revert the policy slice without touching hardware or existing backups"
+    },
+    "runtimeDependencies": [],
+    "validation": [{"criterion": "AC-01", "commands": ["JSON Schema positive and negative admission canaries", "./project/governance-check.sh --actor agent"], "evidence": "Schema rejects forbidden dev backups, missing production evidence and unknown lifecycle"}]
+  }
+}

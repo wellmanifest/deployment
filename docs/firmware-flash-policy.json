@@ -1,0 +1,37 @@
+{
+  "schema": "wellmanifest.firmware-flash-policy/v1",
+  "id": "firmware-flash-backup-policy",
+  "version": "0.1.0-dev",
+  "owner": "wellmanifest/deployment",
+  "status": "candidate",
+  "admissionSchema": "../schemas/firmware-flash-policy.schema.json",
+  "scope": ["USB firmware flashing", "LAN OTA firmware flashing"],
+  "rules": {
+    "development": {
+      "backup": "forbidden",
+      "description": "Flash directly. Do not run read_flash, dump partitions, copy NVS or create a pre-flash device image, even when a legacy default or backup flag requests it. Do not prompt to create such a backup."
+    },
+    "production": {
+      "backup": "required-before-write",
+      "description": "Before any erase or write, obtain and verify recovery evidence for this exact device and overwrite scope. Backup failure blocks flashing; no automatic fallback to development or no-backup."
+    },
+    "unknown": {
+      "action": "refuse-before-device-access",
+      "description": "Resolve target lifecycle from the trusted rig inventory or explicit operator declaration. Never infer it from a clean Git tree, version suffix, branch, hostname, firmware runtime.mode or a GUI label such as production-closed-lung."
+    }
+  },
+  "invariants": [
+    "Keep a single lifecycle owner in the rig OQL/inventory. Environment and CLI values are projections or explicit operator overrides; report their provenance and reject conflicting values.",
+    "Development flashing still verifies device identity, exact artifact hash, safe idle state, command exit code, flashed section hashes and post-flash health. No-backup is not permission to erase NVS or actuate outputs.",
+    "Recording artifact hashes, archiving the locally built ELF, and retaining firmware build artifacts are not device flash backups and remain allowed in development.",
+    "Never delete existing backups as part of this policy. Keep production dumps private; receipts contain only identifiers, digests and byte counts, never secrets or raw NVS.",
+    "OTA rollback slots are not automatically a verified backup. A product may use an existing recovery artifact only after checking exact device, overwrite scope, freshness, digest and restoration capability.",
+    "Schema validation checks evidence structure, not its truth or publication authority. An adapter must verify observations independently before executing a flash.",
+    "When production flashing is forbidden by operator policy and a backup would be required, stop rather than silently flash without recovery."
+  ],
+  "adoption": {
+    "required": ["Pin a published policy revision and SHA-256 digest", "Bind lifecycle to the rig SSOT", "Enforce admission in every flash entrypoint, including Make, scripts and OTA", "Run positive and negative adapter canaries with all hardware transports mocked"],
+    "targets": ["maskservice/stacknet", "maskservice/displaynet", "maskservice/fleet", "oqlos/oql-scenario"],
+    "publicationBoundary": "This candidate is not a deployed fleet policy; adoption and exact-head protected publication are separate effects."
+  }
+}

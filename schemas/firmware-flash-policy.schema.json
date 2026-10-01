@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wellmanifest.dev/schemas/firmware-flash-admission/v1",
+  "title": "Firmware flash backup admission v1",
+  "description": "Validate independently acquired executor observations before flash. This schema grants no device-write or publication authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "lifecycle", "lifecycleSource", "targetRef", "artifactSha256", "transport", "backup", "backupCreated", "safeIdleVerified"],
+  "properties": {
+    "schema": {"const": "wellmanifest.firmware-flash-admission/v1"},
+    "lifecycle": {"enum": ["development", "production"]},
+    "lifecycleSource": {"enum": ["rig-ssot", "operator"]},
+    "targetRef": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,159}$"},
+    "artifactSha256": {"$ref": "#/$defs/digest"},
+    "transport": {"enum": ["usb", "lan-ota"]},
+    "safeIdleVerified": {"const": true},
+    "backupCreated": {"type": "boolean"},
+    "backup": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["receiptRef", "sha256", "bytes", "verified", "targetAndScopeVerified"],
+          "properties": {
+            "receiptRef": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,159}$"},
+            "sha256": {"$ref": "#/$defs/digest"},
+            "bytes": {"type": "integer", "minimum": 1},
+            "verified": {"const": true},
+            "targetAndScopeVerified": {"const": true}
+          }
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"lifecycle": {"const": "development"}}, "required": ["lifecycle"]},
+      "then": {"properties": {"backup": {"type": "null"}, "backupCreated": {"const": false}}},
+      "else": {"properties": {"backup": {"type": "object"}}}
+    }
+  ],
+  "$defs": {"digest": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}
+}
