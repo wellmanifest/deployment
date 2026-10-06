@@ -30,6 +30,8 @@
   "ownedPaths": [
     "dsl-manifest.json",
     "schemas/deployment.schema.json",
+    "schemas/firmware-flash-policy.schema.json",
+    "schemas/firmware-flash-policy.cases.json",
     "docs/DEPLOYMENT.md",
     "docs/ARCHITECTURE.md",
     "docs/LOGIC_FLOW.md"
@@ -41,9 +43,19 @@
       "digest": "sha256:8f2a555b9465057df83c0e58a0bb611e4bc6593010966fb0b4cf28460105c136"
     },
     {
+      "path": "schemas/firmware-flash-policy.schema.json",
+      "role": "schema",
+      "digest": "sha256:ba7d91a2c066d1608b92ffeb2982bc11298aa959e9aaf5b3388d20d80542d406"
+    },
+    {
+      "path": "schemas/firmware-flash-policy.cases.json",
+      "role": "example",
+      "digest": "sha256:025ac9c1eeb5d9da335c6aedbca92416643eb9c00fffc1bad93545c6e7e6996d"
+    },
+    {
       "path": "docs/DEPLOYMENT.md",
       "role": "documentation",
-      "digest": "sha256:dfa52e48cc513b18d26879971e92b500eef32a032eecd75cbef6e7eac6f0eb87"
+      "digest": "sha256:8cf694b58ff81d0672d8608474d6f186665b62b65e8b4c67fd097a31313cc508"
     },
     {
       "path": "docs/ARCHITECTURE.md",
