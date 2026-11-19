@@ -34,7 +34,12 @@
     "schemas/firmware-flash-policy.cases.json",
     "docs/DEPLOYMENT.md",
     "docs/ARCHITECTURE.md",
-    "docs/LOGIC_FLOW.md"
+    "docs/LOGIC_FLOW.md",
+    "schemas/slot-manifest.schema.json",
+    "schemas/activation-journal.schema.json",
+    "schemas/attempt-singleflight.schema.json",
+    "schemas/update-status.schema.json",
+    "schemas/slotkit.cases.json"
   ],
   "artifacts": [
     {
@@ -55,7 +60,7 @@
     {
       "path": "docs/DEPLOYMENT.md",
       "role": "documentation",
-      "digest": "sha256:8cf694b58ff81d0672d8608474d6f186665b62b65e8b4c67fd097a31313cc508"
+      "digest": "sha256:8635776479c77356fe301f4ad5e644d8147dde36d0bfbb6d45dddea9d7e7b960"
     },
     {
       "path": "docs/ARCHITECTURE.md",
@@ -66,6 +71,31 @@
       "path": "docs/LOGIC_FLOW.md",
       "role": "documentation",
       "digest": "sha256:1471c4cd630f611bd644870b1f0a5c0894dee0c47aa2f8dba3e54c036496b92b"
+    },
+    {
+      "path": "schemas/slot-manifest.schema.json",
+      "role": "schema",
+      "digest": "sha256:35072a48d1e9d3e53f84c945cd06995bd5ca104851de1d149e34ead83f08712f"
+    },
+    {
+      "path": "schemas/activation-journal.schema.json",
+      "role": "schema",
+      "digest": "sha256:7939d8f8b8c1e27127380d835e06e3bd6546a939f26f5fdfbc722571c20998e0"
+    },
+    {
+      "path": "schemas/attempt-singleflight.schema.json",
+      "role": "schema",
+      "digest": "sha256:41603afd1359e2e0c95289750e321e7b967c51836881a345e569b95167ac3c8f"
+    },
+    {
+      "path": "schemas/update-status.schema.json",
+      "role": "schema",
+      "digest": "sha256:304c9bb7b94f59499cddc46858b48963d1d3ed0e72ae82b46713c31dfa43a53b"
+    },
+    {
+      "path": "schemas/slotkit.cases.json",
+      "role": "example",
+      "digest": "sha256:292ddb8a5d0239e5665647c737c33369ed8559ae2adc8a1e9be73aed48eae81b"
     }
   ],
   "namespaces": [

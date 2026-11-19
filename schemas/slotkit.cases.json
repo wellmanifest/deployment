@@ -1,0 +1,134 @@
+{
+  "schema": "wellmanifest.slotkit-schema-canaries/v1",
+  "suites": [
+    {
+      "schemaPath": "schemas/slot-manifest.schema.json",
+      "valid": [
+        {
+          "schema": "wellmanifest.slot-manifest/v1",
+          "channel": "stable",
+          "package": "heyasa-lab",
+          "version": "0.1.6",
+          "sourceSha": "5b2e49afee32ac5a02e56235b69718485967abfd",
+          "allowPlatformWheels": true,
+          "serial": 6,
+          "keyEpoch": 1,
+          "artifacts": [
+            {
+              "file": "heyasa_lab-0.1.6-py3-none-any.whl",
+              "sha256": "0d7ab2259856bb7c3587aef8f4f9a6504a42b4545e5e30c4f69139d83bd9b96e",
+              "sizeBytes": 65536
+            }
+          ]
+        }
+      ],
+      "invalid": [
+        {
+          "schema": "wellmanifest.slot-manifest/v1",
+          "channel": "stable",
+          "package": "heyasa-lab",
+          "version": "0.1.6-rc1",
+          "sourceSha": "5b2e49afee32ac5a02e56235b69718485967abfd",
+          "artifacts": [{"file": "heyasa_lab-0.1.6-py3-none-any.whl", "sha256": "0d7ab2259856bb7c3587aef8f4f9a6504a42b4545e5e30c4f69139d83bd9b96e"}]
+        },
+        {
+          "schema": "wellmanifest.slot-manifest/v1",
+          "channel": "stable",
+          "package": "heyasa-lab",
+          "version": "0.1.6",
+          "sourceSha": "not-a-sha",
+          "artifacts": []
+        }
+      ]
+    },
+    {
+      "schemaPath": "schemas/activation-journal.schema.json",
+      "valid": [
+        {
+          "schema": "wellmanifest.activation-journal/v1",
+          "phase": "rolled-back",
+          "ok": false,
+          "channel": "stable",
+          "version": "0.1.6",
+          "sourceSha": "5b2e49afee32ac5a02e56235b69718485967abfd",
+          "releaseDigest": "de4fefaf8238c0f5b0279b3f0ef3261cc80a4134560885ee9396121bfceccda3",
+          "previous": "/opt/heyasa-lab/releases/0.1.5",
+          "release": "/opt/heyasa-lab/releases/0.1.6",
+          "updatedAt": "2026-11-19T10:30:00Z",
+          "error": "Health probe timed out"
+        }
+      ],
+      "invalid": [
+        {
+          "schema": "wellmanifest.activation-journal/v1",
+          "phase": "rolled-back",
+          "ok": true,
+          "channel": "stable",
+          "version": "0.1.6",
+          "sourceSha": "5b2e49afee32ac5a02e56235b69718485967abfd",
+          "releaseDigest": "de4fefaf8238c0f5b0279b3f0ef3261cc80a4134560885ee9396121bfceccda3",
+          "previous": "/opt/heyasa-lab/releases/0.1.5",
+          "release": "/opt/heyasa-lab/releases/0.1.6",
+          "updatedAt": "2026-11-19T10:30:00Z"
+        }
+      ]
+    },
+    {
+      "schemaPath": "schemas/attempt-singleflight.schema.json",
+      "valid": [
+        {
+          "schema": "wellmanifest.attempt-singleflight/v1",
+          "key": "05607f3376bdc9f0b1f8cdedb4db30f808f34547cd95f2bab58ccfa77ff7ff5e",
+          "identity": {"target": "/", "version": "0.7.10"},
+          "phase": "started",
+          "updatedAt": "2026-11-19T10:30:00Z",
+          "circuitBreaker": {"consecutiveFailures": 2, "cooldownUntilEpoch": 1795050000.0}
+        }
+      ],
+      "invalid": [
+        {
+          "schema": "wellmanifest.attempt-singleflight/v1",
+          "key": "short",
+          "identity": {},
+          "phase": "started",
+          "updatedAt": "2026-11-19T10:30:00Z"
+        }
+      ]
+    },
+    {
+      "schemaPath": "schemas/update-status.schema.json",
+      "valid": [
+        {
+          "schema": "wellmanifest.update-status/v1",
+          "phase": "failed",
+          "updatedAt": 1795049515.5,
+          "lastSuccessAt": 1795040000.0,
+          "consecutiveFailures": 1,
+          "firstFailureAt": 1795049515.5,
+          "code": "credential_rejected",
+          "error": "Update endpoint returned HTTP 401",
+          "remediation": "Re-pair device operator token and accept physical PIN."
+        }
+      ],
+      "invalid": [
+        {
+          "schema": "wellmanifest.update-status/v1",
+          "phase": "healthy",
+          "updatedAt": 1795049515.5,
+          "lastSuccessAt": 1795049515.5,
+          "consecutiveFailures": 2,
+          "firstFailureAt": 1795049000.0
+        },
+        {
+          "schema": "wellmanifest.update-status/v1",
+          "phase": "failed",
+          "updatedAt": 1795049515.5,
+          "lastSuccessAt": null,
+          "consecutiveFailures": 1,
+          "firstFailureAt": 1795049515.5,
+          "bearerToken": "forbidden-secret"
+        }
+      ]
+    }
+  ]
+}

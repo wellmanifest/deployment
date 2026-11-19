@@ -268,3 +268,25 @@ receipts were produced and parsed, but no consumer compared them to the merged
 head, so each drift was rediscovered as a fresh defect. Three separate
 investigations that day diagnosed problems that no longer existed, in every case
 because a source artifact was read instead of the running one.
+
+### Release-slot and safe-activation sub-contracts (`slotkit` companion schemas)
+
+Runtime libraries (`semcod/slotkit`) and edge/station agents (`heyasa/heyasa`,
+`heyasa/heyasa-lab`, `maskservice/bootloader`) adopt four companion JSON Schemas
+alongside `deployment.schema.json`:
+
+- [`schemas/slot-manifest.schema.json`](../schemas/slot-manifest.schema.json)
+  (`wellmanifest.slot-manifest/v1`) — offline wheelhouse/artifact set binding
+  `sourceSha`, semantic `version`, SHA-256 per file, optional monotonic `serial`
+  and `keyEpoch`, and optional Ed25519 / Minisign / DSSE signature metadata.
+- [`schemas/activation-journal.schema.json`](../schemas/activation-journal.schema.json)
+  (`wellmanifest.activation-journal/v1`) — crash-safe slot switch journal
+  enforcing `ok: false` whenever `phase` is `activating`, `rolled-back`, or
+  `rollback-failed`, plus active process startup attestation (`pid`, `prefix`,
+  `startTicks`).
+- [`schemas/attempt-singleflight.schema.json`](../schemas/attempt-singleflight.schema.json)
+  (`wellmanifest.attempt-singleflight/v1`) — durable singleflight attempt record
+  and bounded circuit-breaker state (`consecutiveFailures`, `cooldownUntilEpoch`).
+- [`schemas/update-status.schema.json`](../schemas/update-status.schema.json)
+  (`wellmanifest.update-status/v1`) — credential-free operator status projection
+  mapping typed failure codes to actionable recovery instructions.

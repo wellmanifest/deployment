@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wellmanifest.dev/schemas/update-status/v1",
+  "title": "Credential-free update status projection v1",
+  "description": "Redacted operator-visible status file mapping typed failure codes to actionable recovery instructions without storing secrets.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "phase", "updatedAt", "lastSuccessAt", "consecutiveFailures", "firstFailureAt"],
+  "properties": {
+    "schema": {"const": "wellmanifest.update-status/v1"},
+    "phase": {"enum": ["healthy", "planned", "activating", "failed", "rolled-back"]},
+    "updatedAt": {"type": "number", "minimum": 0},
+    "lastSuccessAt": {"type": ["number", "null"], "minimum": 0},
+    "consecutiveFailures": {"type": "integer", "minimum": 0},
+    "firstFailureAt": {"type": ["number", "null"], "minimum": 0},
+    "version": {"type": ["string", "null"], "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:[-+][A-Za-z0-9.-]+)?$"},
+    "sourceSha": {"type": ["string", "null"], "pattern": "^[a-f0-9]{40}$"},
+    "code": {"type": ["string", "null"], "pattern": "^[a-z0-9_.-]{1,64}$"},
+    "error": {"type": ["string", "null"], "maxLength": 512},
+    "remediation": {"type": ["string", "null"], "maxLength": 1024}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"phase": {"const": "healthy"}}, "required": ["phase"]},
+      "then": {
+        "properties": {
+          "consecutiveFailures": {"const": 0},
+          "firstFailureAt": {"type": "null"}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"phase": {"enum": ["failed", "rolled-back"]}}, "required": ["phase"]},
+      "then": {
+        "properties": {
+          "consecutiveFailures": {"type": "integer", "minimum": 1},
+          "firstFailureAt": {"type": "number", "minimum": 0}
+        }
+      }
+    }
+  ],
+  "examples": [
+    {
+      "schema": "wellmanifest.update-status/v1",
+      "phase": "healthy",
+      "updatedAt": 1795049515.5,
+      "lastSuccessAt": 1795049515.5,
+      "consecutiveFailures": 0,
+      "firstFailureAt": null,
+      "version": "0.7.10",
+      "sourceSha": "db8c8da070d6475ea52c7b09bf22d0eabe6fde24"
+    }
+  ]
+}
