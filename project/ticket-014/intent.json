@@ -1,0 +1,92 @@
+{
+  "schema": "new-project.intent/v3",
+  "ticket": "ticket-014",
+  "summary": "Add slot-manifest, activation-journal, attempt-singleflight and update-status schemas",
+  "workstream": "integration",
+  "classification": {
+    "kind": "FEATURE",
+    "priority": "P1",
+    "origin": "requested"
+  },
+  "allowedPaths": [
+    "project/ticket-014/**",
+    "TODO.md",
+    "project/TICKETS.md",
+    "docs/DEPLOYMENT.md",
+    "dsl-manifest.json",
+    "schemas/activation-journal.schema.json",
+    "schemas/attempt-singleflight.schema.json",
+    "schemas/slot-manifest.schema.json",
+    "schemas/slotkit.cases.json",
+    "schemas/update-status.schema.json"
+  ],
+  "forbiddenPaths": [
+    "project/ticket-*/user-*.md"
+  ],
+  "stacks": [],
+  "dependsOn": [],
+  "conflictsWith": [],
+  "integrationTicket": null,
+  "delivery": {
+    "acceptedBaseSha": "d6459176f1f8dfdc254f5a8bd07bde7f1a61e5fd",
+    "targetBranch": "main",
+    "outcome": "Publish normative Draft 2020-12 JSON Schemas and canary cases for immutable release-slot manifests, crash-safe activation journals, singleflight attempt journals, and redacted update status projections.",
+    "nonGoals": [
+      "No runtime deployment execution inside wellmanifest/deployment",
+      "No credentials or device secrets stored in schema artifacts"
+    ],
+    "complexity": "M",
+    "estimatedMinutes": 35,
+    "budgets": {
+      "maxImplementationFiles": 7,
+      "maxAffectedComponents": 2,
+      "maxPublicInterfaceChanges": 1,
+      "maxRuntimeDependencies": 0
+    },
+    "architecture": {
+      "status": "accepted",
+      "decision": "Keep normative JSON Schemas in wellmanifest/deployment while zero-dependency runtime helpers live in semcod/slotkit and product daemons adopt the schemas.",
+      "components": [
+        {
+          "name": "slot-rollout-schemas",
+          "paths": [
+            "schemas/slot-manifest.schema.json",
+            "schemas/activation-journal.schema.json",
+            "schemas/attempt-singleflight.schema.json",
+            "schemas/update-status.schema.json",
+            "schemas/slotkit.cases.json",
+            "docs/DEPLOYMENT.md"
+          ]
+        },
+        {
+          "name": "dsl-manifest",
+          "paths": [
+            "dsl-manifest.json"
+          ]
+        }
+      ],
+      "responsibilityChanges": false,
+      "interfaceChanges": [
+        "wellmanifest.slotkit-contracts/v1"
+      ],
+      "dataChanges": [],
+      "ui": {
+        "impact": "none",
+        "states": [],
+        "evidence": []
+      },
+      "rollback": "Revert the schema addition slice without affecting existing deployment.schema.json consumers."
+    },
+    "runtimeDependencies": [],
+    "validation": [
+      {
+        "criterion": "AC-01",
+        "commands": [
+          "python3 ../dsl/src/dsl_check.py validate --root . dsl-manifest.json",
+          "./project/governance-check.sh"
+        ],
+        "evidence": "All Draft 2020-12 schemas and positive/negative canary cases validate cleanly and GOV-PASS."
+      }
+    ]
+  }
+}

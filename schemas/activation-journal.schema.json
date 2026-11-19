@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wellmanifest.dev/schemas/activation-journal/v1",
+  "title": "Crash-safe slot activation journal v1",
+  "description": "Durable state record written before switching an active slot symlink and updated after runtime attestation or rollback.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "phase", "ok", "channel", "version", "sourceSha", "releaseDigest", "previous", "release", "updatedAt"],
+  "properties": {
+    "schema": {"const": "wellmanifest.activation-journal/v1"},
+    "phase": {"enum": ["activating", "healthy", "rolled-back", "rollback-failed"]},
+    "ok": {"type": "boolean"},
+    "channel": {"enum": ["developer", "stable"]},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:[-+][A-Za-z0-9.-]+)?$"},
+    "sourceSha": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+    "releaseDigest": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "previous": {"type": "string", "pattern": "^/[^\\u0000]*$"},
+    "release": {"type": "string", "pattern": "^/[^\\u0000]*$"},
+    "updatedAt": {"type": "string", "minLength": 10, "maxLength": 64},
+    "error": {"type": "string", "maxLength": 1024},
+    "rollbackError": {"type": "string", "maxLength": 1024},
+    "processAttestation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pid", "prefix", "startTicks"],
+      "properties": {
+        "pid": {"type": "integer", "minimum": 1},
+        "prefix": {"type": "string", "pattern": "^/[^\\u0000]*$"},
+        "startTicks": {"type": "string", "pattern": "^[0-9]+$"}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"phase": {"const": "healthy"}}, "required": ["phase"]},
+      "then": {"properties": {"ok": {"const": true}}}
+    },
+    {
+      "if": {"properties": {"phase": {"enum": ["activating", "rolled-back", "rollback-failed"]}}, "required": ["phase"]},
+      "then": {"properties": {"ok": {"const": false}}}
+    }
+  ],
+  "examples": [
+    {
+      "schema": "wellmanifest.activation-journal/v1",
+      "phase": "healthy",
+      "ok": true,
+      "channel": "stable",
+      "version": "0.1.6",
+      "sourceSha": "5b2e49afee32ac5a02e56235b69718485967abfd",
+      "releaseDigest": "de4fefaf8238c0f5b0279b3f0ef3261cc80a4134560885ee9396121bfceccda3",
+      "previous": "/opt/heyasa-lab/releases/0.1.5-5b2e49afee32",
+      "release": "/opt/heyasa-lab/releases/0.1.6-5b2e49afee32",
+      "updatedAt": "2026-11-19T10:30:00Z",
+      "processAttestation": {
+        "pid": 4210,
+        "prefix": "/opt/heyasa-lab/releases/0.1.6-5b2e49afee32",
+        "startTicks": "9812345"
+      }
+    }
+  ]
+}

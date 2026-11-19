@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wellmanifest.dev/schemas/attempt-singleflight/v1",
+  "title": "Singleflight attempt journal and circuit breaker v1",
+  "description": "Durable singleflight attempt record persisted before mutating state; interrupted started records require explicit reconciliation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "key", "identity", "phase", "updatedAt"],
+  "properties": {
+    "schema": {"const": "wellmanifest.attempt-singleflight/v1"},
+    "key": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "identity": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": ["string", "integer", "boolean"]
+      }
+    },
+    "phase": {"enum": ["started", "healthy", "failed", "unresolved"]},
+    "updatedAt": {"type": "string", "minLength": 10, "maxLength": 64},
+    "circuitBreaker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["consecutiveFailures", "cooldownUntilEpoch"],
+      "properties": {
+        "consecutiveFailures": {"type": "integer", "minimum": 0},
+        "cooldownUntilEpoch": {"type": "number", "minimum": 0}
+      }
+    }
+  },
+  "examples": [
+    {
+      "schema": "wellmanifest.attempt-singleflight/v1",
+      "key": "05607f3376bdc9f0b1f8cdedb4db30f808f34547cd95f2bab58ccfa77ff7ff5e",
+      "identity": {
+        "deviceId": "heyasa-4f8e903d48444eb737d06d7a",
+        "channel": "stable",
+        "version": "0.7.10"
+      },
+      "phase": "healthy",
+      "updatedAt": "2026-11-19T10:30:00Z"
+    }
+  ]
+}
