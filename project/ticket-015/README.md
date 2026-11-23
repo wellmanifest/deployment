@@ -37,3 +37,5 @@ Diagnostics: RADAR-ACCEPTANCE-MISSING, RADAR-BUDGET-EXCEEDED.
 <!-- ticket-radar:end -->
 
 SESSION_EXECUTION_AUTHORIZATION: The operator requested reuse guidance in the deployment standard explicitly.
+
+The existing DSL manifest pins the documentation bytes. The bounded scope includes refreshing that one documentation digest.

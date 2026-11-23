@@ -12,7 +12,8 @@
     "project/ticket-015/**",
     "TODO.md",
     "project/TICKETS.md",
-    "docs/DEPLOYMENT.md"
+    "docs/DEPLOYMENT.md",
+    "dsl-manifest.json"
   ],
   "forbiddenPaths": [
     "project/ticket-*/user-*.md"
@@ -20,5 +21,54 @@
   "stacks": [],
   "dependsOn": [],
   "conflictsWith": [],
-  "integrationTicket": null
+  "integrationTicket": null,
+  "delivery": {
+    "acceptedBaseSha": "2da698ec27a78f32ffd3956388d9e3ce60aafa08",
+    "targetBranch": "main",
+    "outcome": "Document the optional audited update profile and validate the documentation digest in the deployment DSL contract.",
+    "nonGoals": [
+      "No changes to the runtime deployment contract or schema."
+    ],
+    "complexity": "S",
+    "estimatedMinutes": 25,
+    "budgets": {
+      "maxImplementationFiles": 2,
+      "maxAffectedComponents": 1,
+      "maxPublicInterfaceChanges": 0,
+      "maxRuntimeDependencies": 0
+    },
+    "architecture": {
+      "status": "accepted",
+      "decision": "Extend the existing deployment guide and refresh the exact documentation digest using the pinned DSL kernel.",
+      "components": [
+        {
+          "name": "deployment-adoption-guide",
+          "paths": [
+            "docs/DEPLOYMENT.md",
+            "dsl-manifest.json"
+          ]
+        }
+      ],
+      "responsibilityChanges": false,
+      "interfaceChanges": [],
+      "dataChanges": [],
+      "ui": {
+        "impact": "none",
+        "states": [],
+        "evidence": []
+      },
+      "rollback": "Revert the guide and its pinned digest together."
+    },
+    "runtimeDependencies": [],
+    "validation": [
+      {
+        "criterion": "AC-01",
+        "commands": [
+          "python3 .governance/render_dsl_manifest.py --check",
+          "python3 .governance/test_dsl_projection.py"
+        ],
+        "evidence": "Run the DSL kernel pinned by the manifest and verify exact base-to-head changes."
+      }
+    ]
+  }
 }

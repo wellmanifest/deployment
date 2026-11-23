@@ -60,7 +60,7 @@
     {
       "path": "docs/DEPLOYMENT.md",
       "role": "documentation",
-      "digest": "sha256:8635776479c77356fe301f4ad5e644d8147dde36d0bfbb6d45dddea9d7e7b960"
+      "digest": "sha256:4b32fcaa9fd59e75fa29ad062348074da68ac0d65a60e9311115a6072ec16931"
     },
     {
       "path": "docs/ARCHITECTURE.md",
