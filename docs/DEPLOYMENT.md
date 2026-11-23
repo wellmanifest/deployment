@@ -249,6 +249,49 @@ project definition, silently enable LLM self-healing during an authorized plan,
 or change the plan after the grant. A healed or regenerated plan requires a new
 hash and fresh external grant.
 
+### Optional adoption profile for addressable updates
+
+Projects can combine the existing deployment contract with Dockuri, Forge and
+UrtLog. The Heyasa reference package lives in
+`heyasa/forge/packages/forge_update_operations`. Its local pilot exercises
+verified activation, rejection of altered bytes and recovery after failed
+read-back. The OQLLM Status controller on Orin is a device example of the same
+separation between plan and apply.
+
+| Boundary | Evidence |
+| --- | --- |
+| Operation | Versioned Dockuri URIs for planning and activation. The schedule calls the declared activation URI with a trusted target binding. |
+| Artifacts | Forge captures a full Git commit. The selected files are bound by repository, commit, repository-relative path and SHA-256. This applies to shell scripts, Python, JavaScript, APX manifests and configuration. |
+| Authority | Resolve the target, record the current running revision and produce the canonical deployment plan. A separate trusted controller grants the exact deployment `planHash`. |
+| Before activation | Recheck the running revision and selected artifact bytes under the target lock. Persist the UrtLog event for the validated plan before an effectful step. |
+| After activation | Read the running revision and artifact identity, verify health and check them against the plan. If compensation runs, verify the restored revision. Keep the deployment receipt and UrtLog run ID linked. |
+
+The deployment receipt remains the authoritative result for a deployment. Link
+it to the UrtLog record so operators can query the operation URI, execution
+time, plan hash, artifact URNs and outcome. Do not put secrets, command output
+or private target configuration in the event metadata. If the pre-effect
+audit write fails, stop before activation. If an audit write fails after
+activation, retain the target journal and reconcile against actual state
+before retrying.
+
+#### First adoption in `semcod/redeploy`
+
+Start with an exact fixture and `redeploy run SPEC --plan-only`. Record the
+normalized plan and preflight evidence. For a later isolated apply, bind the
+generated steps and compensation to the deployment `planHash`, and resolve
+the host through the existing device inventory. Keep the current executor for
+apply and rollback. Add the UrtLog binding around those calls and verify the
+deployed artifact revision along with health. A healthy response from the
+wrong revision fails the check.
+
+The first acceptance set includes a healthy candidate, a mismatched artifact
+stopped before activation, a failed post-activation probe with verified
+rollback, and an unavailable audit sink stopped before the first effect.
+This profile is an adoption option for executors. Use the existing
+[URIprocess packaging standard](https://github.com/wellmanifest/uriprocess)
+for a portable process bundle and keep application manifests compatible with
+[Wellmanifest APX](https://github.com/wellmanifest/apx).
+
 ### Design provenance
 
 The contract follows the immutable
